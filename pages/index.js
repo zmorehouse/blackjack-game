@@ -522,7 +522,7 @@ export default function Home() {
                   <span className={styles.tooltipTrigger}> 0.23599%*</span> edge on Blackjack,
                   making it the most profitable game in a casino.
                 </p>
-                <p className={styles.subheader}>This website is designed to help you master basic strategy.</p>
+                <p className={styles.subheader}>This website is designed to help you master basic blackjack strategy.</p>
 
                 {/* Tooltip content - inside the same parent */}
                 <div className={styles.tooltipContent}>
