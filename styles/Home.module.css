@@ -310,3 +310,28 @@
   border-radius: 6px;
   width: 300px;
 }
+/* Style the navigation buttons */
+.navLinks {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.navButton {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.navButton:hover {
+  color: #f5a623; /* Highlight effect on hover */
+}
+
+.navButton.active {
+  font-weight: bold;
+  text-decoration: underline;
+}

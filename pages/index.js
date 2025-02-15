@@ -55,18 +55,20 @@ export default function Home() {
   const [handsLost, setHandsLost] = useState(0);
   const [handsDrawn, setHandsDrawn] = useState(0);
   const [profit, setProfit] = useState(0);
+  const [infoTab, setInfoTab] = useState("home");
+
 
 
 
   const startGame = () => {
     let newDeck = shuffleDeck(createDeck()); // Always reshuffle a new 4-deck shoe
 
-    //let playerInitialHand = [newDeck.pop(), newDeck.pop()];
-    let fixedValue = "8"; // Change this value to test different splits
+    let playerInitialHand = [newDeck.pop(), newDeck.pop()];
+    /*let fixedValue = "8"; // Change this value to test different splits
     let playerInitialHand = [
       { suit: suits[0], value: fixedValue },
       { suit: suits[1], value: fixedValue }
-    ];
+    ];*/
 
     let dealerInitialHand = [newDeck.pop(), newDeck.pop()];
 
@@ -252,7 +254,6 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
         <main className={styles.gameArea}>
-          <h1 className={styles.title}>Blackjack Trainer</h1>
           <div className={styles.table}>
             <div className={styles.dealer}>
               <h2>Dealer</h2>
@@ -316,18 +317,42 @@ export default function Home() {
 
         {/* Information Pane */}
         <aside className={styles.infoPane}>
-          <h2>Game Information</h2>
-          <p>Played perfectly, the house only has a 0.23599%* edge on Blackjack, making it the most profitable game in a casino.</p>
-          <p>This website is designed to help you master basic strategy.</p>
-          <p>*Assuming the following: 4 decks, Dealer Stands on soft 17, Players can double on any cards, Players can split any cards, Players can resplit to 4 hands, cards are auto-shuffled, Blackjack pays 3 to 2, No surrender is offered.</p>
-          <div className={styles.stats}>
-  <p>Your Win %: {(handsWon + handsLost + handsDrawn > 0 ? ((handsWon / (handsWon + handsLost + handsDrawn)) * 100).toFixed(2) : "0")}%</p>
-  <p>Your W/L/D: {handsWon} - {handsLost} - {handsDrawn}</p>
-  <p>$25 Hands, Your Profit: ${profit}</p>
-</div>
+  <div className={styles.navLinks}>
+    <button 
+      className={`${styles.navButton} ${infoTab === "home" ? styles.active : ""}`} 
+      onClick={() => setInfoTab("home")}
+    >
+      Home
+    </button>
+    <button 
+      className={`${styles.navButton} ${infoTab === "cheatsheet" ? styles.active : ""}`} 
+      onClick={() => setInfoTab("cheatsheet")}
+    >
+      Cheatsheet
+    </button>
+  </div>
 
+  {/* Render content based on selected tab */}
+  {infoTab === "home" ? (
+    <>
+      <h1 className={styles.title}>Blackjack Trainer</h1>
+      <p>Played perfectly, the house only has a 0.23599%* edge on Blackjack, making it the most profitable game in a casino.</p>
+      <p>This website is designed to help you master basic strategy.</p>
+      <p>*Assuming the following: 4 decks, Dealer Stands on soft 17, Players can double on any cards, Players can split any cards, Players can resplit to 4 hands, cards are auto-shuffled, Blackjack pays 3 to 2, No surrender is offered.</p>
+      <div className={styles.stats}>
+        <p>Your Win %: {(handsWon + handsLost + handsDrawn > 0 ? ((handsWon / (handsWon + handsLost + handsDrawn)) * 100).toFixed(2) : "0")}%</p>
+        <p>Your W/L/D: {handsWon} - {handsLost} - {handsDrawn}</p>
+        <p>$25 Hands, Your Profit: ${profit}</p>
+      </div>
+    </>
+  ) : (
+    <>
+      <h1 className={styles.title}>Blackjack Cheatsheet</h1>
+      <p>Cheatsheet content will go here...</p> {/* Placeholder content */}
+    </>
+  )}
+</aside>
 
-        </aside>
       </div>
     </>
   );
