@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/home.module.css";
 
 const suits = ["\u2660", "\u2665", "\u2666", "\u2663"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -43,17 +43,6 @@ const calculateHandValue = (hand = []) => {
   return total;
 };
 
-const TabIcons = () => {
-  return (
-    <div className={styles.iconContainer}>
-      <span className={styles.icon}>🎴</span> {}
-      <span className={styles.icon}>♠️</span> {}
-      <span className={styles.icon}>♣️</span> {}
-      <span className={styles.icon}>♦️</span> {}
-      <span className={styles.icon}>♥️</span> {}
-    </div>
-  );
-};
 
 
 export default function Home() {
@@ -75,7 +64,7 @@ export default function Home() {
   const [showOptimalMove, setShowOptimalMove] = useState(true);
 
 
-  
+
 
   const startGame = () => {
     let newDeck = shuffleDeck(createDeck()); // Always reshuffle a new 4-deck shoe
@@ -399,7 +388,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Blackjack Trainer</title>
+        <title>Optimal Strategy Blackjack Trainer</title>
       </Head>
       <div className={styles.container}>
         <main className={styles.gameArea}>
@@ -456,9 +445,9 @@ export default function Home() {
 
                       {/* Show optimal move suggestion */}
                       {/* Show optimal move suggestion if enabled */}
-{playerTurn && index === currentHandIndex && showOptimalMove && (
-  <p className={styles.suggestion}>Optimal Move: {suggestedMove}</p>
-)}
+                      {playerTurn && index === currentHandIndex && showOptimalMove && (
+                        <p className={styles.suggestion}>Optimal Move: {suggestedMove}</p>
+                      )}
 
                       {/* Controls BELOW each respective hand */}
                       {index === currentHandIndex && !gameOver && playerTurn && (
@@ -495,6 +484,8 @@ export default function Home() {
           )}
 
           {message && <p className={styles.message}>{message}</p>}
+          <p className={styles.poweredby}> A <a href="https://zmorehouse.com" target="_blank">  zmorehouse.com</a> project.</p>
+
         </main>
 
         {/* Information Pane */}
@@ -523,31 +514,79 @@ export default function Home() {
           {/* Render content based on selected tab */}
           {infoTab === "home" ? (
             <>
-              <h1 className={styles.title}>Blackjack Trainer</h1>
-              <p>Played perfectly, the house only has a 0.23599%* edge on Blackjack, making it the most profitable game in a casino.</p>
-              <p>This website is designed to help you master basic strategy.</p>
-              <p>*Assuming the following: 4 decks, Dealer Stands on soft 17, Players can double on any cards, Players can split any cards, Players can resplit to 4 hands, cards are auto-shuffled, Blackjack pays 3 to 2, No surrender is offered.</p>
-              <div className={styles.stats}>
-                <p>Your Win %: {(handsWon + handsLost + handsDrawn > 0
-                  ? ((handsWon / (handsWon + handsLost + handsDrawn)) * 100).toFixed(2)
-                  : "0")}%</p>
+              <h1 className={styles.title}> Zac's Blackjack Trainer</h1>
+              <div className={styles.tooltipContainer}>
+                <p>
+                  Played perfectly, the house only has
+                  <span className={styles.tooltipTrigger}> 0.23599%*</span> edge on Blackjack,
+                  making it the most profitable game in a casino.
+                </p>
+                <p className={styles.subheader}>This website is designed to help you master basic strategy.</p>
 
-                <p>Your W/L/D: {handsWon} - {handsLost} - {handsDrawn}</p>
-                <p>$25 Hands, Your Profit: ${profit}</p>
-
-                <p>Correct Moves: {correctMoves}</p>
-                <p>Incorrect Moves: {incorrectMoves}</p>
-                <p>Strategy Accuracy: {(correctMoves + incorrectMoves > 0
-                  ? ((correctMoves / (correctMoves + incorrectMoves)) * 100).toFixed(2)
-                  : "0")}%</p>
-
-                {/* Reset Button */}
-                <button className={styles.resetButton} onClick={resetStats}>
-                  Reset Stats
-                </button>
+                {/* Tooltip content - inside the same parent */}
+                <div className={styles.tooltipContent}>
+                  Assuming then following :
+                  <ul>
+                    <li>4 decks are used.</li>
+                    <li>Dealer Stands on soft 17</li>
+                    <li>Players can double on any cards</li>
+                    <li>Players can split any cards</li>
+                    <li>Players can resplit to 4 hands</li>
+                    <li>Cards are auto-shuffled</li>
+                    <li>Blackjack pays 3 to 2</li>
+                    <li>No surrender is offered</li>
+                    <li>Insurance is never taken</li>
+                  </ul>
+                </div>
               </div>
-              {/* Toggle Optimal Move Display */}
-<div className={styles.toggleContainer}>
+
+              <div className={styles.stats}>
+  <h2 className={styles.statsTitle}><span>Your Statistics</span></h2>
+
+  <div className={styles.statRow}>
+    <span>Your Win %</span>
+    <span>{handsWon + handsLost + handsDrawn > 0
+      ? ((handsWon / (handsWon + handsLost + handsDrawn)) * 100).toFixed(2)
+      : "0"}%</span>
+  </div>
+
+  <div className={styles.statRow}>
+    <span>Your W/L/D</span>
+    <span>{handsWon} - {handsLost} - {handsDrawn}</span>
+  </div>
+
+  <div className={styles.statRow}>
+    <span>$25 Hands, Your Profit</span>
+    <span>${profit}</span>
+  </div>
+
+  <div className={styles.statRow}>
+    <span>Correct Moves  </span>
+    <span>{correctMoves}</span>
+  </div>
+
+  <div className={styles.statRow}>
+    <span>Incorrect Moves</span>
+    <span>{incorrectMoves}</span>
+  </div>
+
+  <div className={styles.statRow}>
+    <span>Strategy Accuracy</span>
+    <span>{correctMoves + incorrectMoves > 0
+      ? ((correctMoves / (correctMoves + incorrectMoves)) * 100).toFixed(2)
+      : "0"}%</span>
+  </div>
+
+  <div className={styles.divider}>
+
+  </div>
+  <div className={styles.toggleResetContainer}>
+  {/* Reset Button */}
+  <button className={styles.resetButton} onClick={resetStats}>
+    Reset Stats
+  </button>
+
+  {/* Toggle Optimal Move Display */}
   <label className={styles.toggleLabel}>
     Show Optimal Move:
     <input
@@ -558,15 +597,24 @@ export default function Home() {
     />
   </label>
 </div>
+<div className={styles.divider}>
 
-              <TabIcons /> 
+</div>
 
 
+              </div>
+              <div className={styles.footerdiv}>
+              <p> Win big? Slide a chip my way and <a href="https://buymeacoffee.com/zmorehouse" target="_blank"> shout me a coffee</a>    ☕  </p></div>
+     
             </>
           ) : infoTab === "cheatsheet" ? (
             <>
-              <h1 className={styles.title}>Blackjack Cheatsheet</h1>
-
+              <h2 className={styles.title}>Blackjack Cheatsheet</h2>
+              <div className={styles.cheatsheets}>
+                <p>  A 'hard' hand is one where an Ace is equal to 11.</p>
+                <p> A soft hand has an Ace that can act as either 11 or 1</p>
+                <p> All tens are considered equals (K/Q/J/10).</p>
+                <p className={styles.finalline}> H = Hit, D = Double Down, DS = Double Down or Stand, P = Split</p>
               <h3>Hard Totals</h3>
               <table border="1">
                 <tr>
@@ -618,14 +666,14 @@ export default function Home() {
                 <tr><td>(T,T)</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td></tr>
                 <tr><td>(A,A)</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td><td>P</td></tr>
               </table>
-              <TabIcons />
+              </div>
             </>
           ) : infoTab == "moreinfo" ? (
-          <>
-            <h1 className={styles.title}>More Info</h1>
-            <TabIcons /> 
-          </>
-   ) : null}
+            <>
+              <h2 className={styles.title}>More Info</h2>
+              
+            </>
+          ) : null}
         </aside>
 
       </div>
@@ -633,3 +681,4 @@ export default function Home() {
   );
 
 }
+

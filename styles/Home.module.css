@@ -1,3 +1,4 @@
+
 .container {
   display: flex;
   width: 100%;
@@ -70,30 +71,43 @@
 }
 
 .navLinks {
-  padding-top:15px;
-  padding-bottom:15px;
+  padding-top: 15px;
+  padding-bottom: 30px;
 }
 
 .navButton {
-  font-family:'DePixelHalbfett';
-  text-transform:uppercase;
-  font-size:12px !important;
-  text-decoration:none !important;
-  
+  font-family: "DePixelHalbfett";
+  text-transform: uppercase;
+  font-size: 12px !important;
+  text-decoration: none !important;
 }
 
-/* Info panel takes 1/3 of the screen */
 .infoPane {
-  flex: 1;
-  padding: 20px;
-  background-color: #222;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-left: 4px solid #333;
+  max-height: 100vh; /* Ensures the panel doesn't exceed the screen height */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding-right: 10px; /* Prevents content from touching the scrollbar */
+  scrollbar-width: thin; /* Firefox: Makes scrollbar thinner */
+  scrollbar-color: #888 transparent; /* Firefox: Custom scrollbar color */
 }
+
+/* For Webkit browsers (Chrome, Safari, Edge) */
+.infoPane::-webkit-scrollbar {
+  width: 8px; /* Adjust scrollbar width */
+}
+
+.infoPane::-webkit-scrollbar-track {
+  background: transparent; /* Keeps the track background clean */
+}
+
+.infoPane::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar color */
+  border-radius: 4px;
+}
+
+.infoPane::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker scrollbar on hover */
+}
+
 
 /* Responsive Design for Small Screens */
 @media (max-width: 1350px) {
@@ -290,24 +304,36 @@
   font-size: 16px;
   border-radius: 6px;
   border: none;
-  cursor: pointer;
-  transition: 0.2s;
+
+    transition: 0.2s;
 }
 
 /* Different button colors */
-.splitButton { background-color: #f39c12; color: white; }
-.hitButton { background-color: #27ae60; color: white; }
-.standButton { background-color: #c0392b; color: white; }
-.doubleDownButton { background-color: #2980b9; color: white; }
-.startButton { background-color:#f39c12; color:white;}
+.splitButton {
+  background-color: #f39c12;
+  color: white;
+}
+.hitButton {
+  background-color: #27ae60;
+  color: white;
+}
+.standButton {
+  background-color: #c0392b;
+  color: white;
+}
+.doubleDownButton {
+  background-color: #2980b9;
+  color: white;
+}
+.startButton {
+  background-color: #f39c12;
+  color: white;
+}
 
 /* Hover effects */
 .actionButton:hover {
   opacity: 0.8;
 }
-
-
-
 
 .stats {
   text-align: center;
@@ -318,7 +344,7 @@
   background: #222;
   color: white;
   border-radius: 6px;
-  width: 300px;
+  width: 100%;
 }
 /* Style the navigation buttons */
 .navLinks {
@@ -333,7 +359,6 @@
   color: white;
   font-size: 16px;
   padding: 10px 15px;
-  cursor: pointer;
   transition: 0.3s;
 }
 
@@ -344,4 +369,243 @@
 .navButton.active {
   font-weight: bold;
   text-decoration: underline;
+}
+
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+  text-align:center;
+}
+
+.tooltipTrigger {
+  color: #f5a623;
+  text-decoration: underline;
+  position: relative;
+}
+
+.tooltipContent {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: 300px;
+  padding:25px;
+  padding-left:30px;
+  background-color: rgb(2, 37, 0);
+  color: white;
+  text-align: left;
+  border-radius: 5px;
+  font-size: 18px;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+  z-index: 10;
+  font-family: LeviWindows;
+}
+
+.tooltipContent li {
+  margin-left:20px;
+  margin-top:5px;
+}
+
+.tooltipContainer:hover .tooltipContent {
+  visibility: visible;
+  opacity: 1;
+}
+
+.subheader {
+  margin-top: 15px;
+}
+
+.statsTitle {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 20px 0;
+  text-transform: uppercase;
+  position: relative;
+  color: white;
+}
+
+.statsTitle::before,
+.statsTitle::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #cacaca; 
+}
+.statsTitle::before {
+  margin-right:15px;
+}
+.statsTitle::after {
+  margin-left:15px;
+}
+
+.divider {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #cacaca; 
+  margin-top:10px;
+  margin-bottom:15px;
+}
+
+
+.stats {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.statRow {
+  font-family:'LeviWindows';
+
+  font-size:18px !important;
+}
+
+.statsTitle {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.statRow {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+  position: relative;
+  height:40px;
+}
+
+.toggleResetContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom:20px;
+  gap: 20px;
+  font-family:'LeviWindows';
+}
+
+.resetButton {
+  flex: 1;
+  max-width: 150px; 
+  padding:15px;
+  font-family:'DePixelHalbfett';
+  text-transform:uppercase;
+  letter-spacing:-1px;  
+
+}
+
+.toggleLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.toggleInput {
+  width: 15px;
+  height: 15px;
+  cursor: url("/pointer.png"), pointer;
+}
+
+.footerdiv {
+  margin-top: auto; 
+}
+
+.footerdiv a {
+  color:#f5a623;
+  text-decoration:underline;
+
+}
+
+.poweredby {
+  position:absolute;
+  bottom:20px;
+  color:#123512;
+}
+
+.cheatsheets {
+  width:100%;
+
+}
+
+.title {
+  margin-bottom:20px;
+}
+
+.cheatsheets p {
+  font-size:16px;
+  text-align:center;
+}
+
+.cheatsheets h3 {
+  font-family:'DePixelHalbfett';
+  font-size:14px;
+  text-transform:uppercase;
+  margin-top:15px;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.cheatsheets table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: #222; /* Dark background for contrast */
+  color: white;
+  overflow: hidden;
+  font-family:'LeviWindows';
+
+}
+
+
+
+.cheatsheets th, 
+.cheatsheets td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #444; /* Subtle borders */
+}
+
+.cheatsheets th {
+  background-color: #ffcc00; /* Golden header */
+  color: #222;
+  font-weight: bold;
+}
+
+.cheatsheets tr:nth-child(even) {
+  background-color: #333; /* Darker background for alternating rows */
+}
+
+.cheatsheets tr:hover {
+  background-color: #444; /* Highlight row on hover */
+  transition: background 0.2s ease-in-out;
+}
+
+.cheatsheets td:first-child {
+  font-weight: bold;
+  color: #ffcc00; /* Highlight first column */
+}
+
+.cheatsheets th:first-child {
+  border-top-left-radius: 2px;
+}
+
+.cheatsheets th:last-child {
+  border-top-right-radius: 2px;
+}
+
+.finalline {
+  margin-top:10px;
+  color:#ffcc00;
 }

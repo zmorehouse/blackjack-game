@@ -68,3 +68,12 @@ a {
 }
 
 
+
+
+* {
+  cursor: url("/cursor.png"), auto;
+}
+
+a, button, .customPointer, .actionButton, .navButton, .toggleInput{
+  cursor: url("/pointer.png"), pointer;
+}
