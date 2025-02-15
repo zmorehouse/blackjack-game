@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import styles from "@/styles/home.module.css";
+import styles from "@/styles/Home.module.css";
 
 const suits = ["\u2660", "\u2665", "\u2666", "\u2663"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
