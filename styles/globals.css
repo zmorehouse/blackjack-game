@@ -24,6 +24,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2{
+  font-family:'DePixelHalbfett';
+
+}
+
+p {
+  font-family:'LeviWindows';
+  font-size:18px;
+}
+
+
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -40,3 +52,19 @@ a {
     color-scheme: dark;
   }
 }
+
+@font-face {
+  font-family: "DePixelHalbfett";
+  src: url("/fonts/depixelhalbfett.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeviWindows";
+  src: url("/fonts/leviwindows.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
