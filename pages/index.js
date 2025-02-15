@@ -89,7 +89,6 @@ export default function Home() {
     setRevealDealer(false);
 
     if (calculateHandValue(playerInitialHand) === 21) {
-      setMessage("Blackjack! You win!");
       setRevealDealer(true);
       setGameOver(true);
       setPlayerTurn(false);
@@ -190,7 +189,6 @@ export default function Home() {
     }
 
     if (newIndex >= hands.length) {
-      setMessage("All playable hands completed!");
       setGameOver(true);
       setPlayerTurn(false);
       setRevealDealer(true);
@@ -390,8 +388,11 @@ export default function Home() {
       <Head>
         <title>Optimal Strategy Blackjack Trainer</title>
       </Head>
+      
       <div className={styles.container}>
+        
         <main className={styles.gameArea}>
+          
           <div className={styles.table}>
             <div className={styles.dealer}>
               <h2>Dealer</h2>
@@ -484,7 +485,7 @@ export default function Home() {
           )}
 
           {message && <p className={styles.message}>{message}</p>}
-          <p className={styles.poweredby}> A <a href="https://zmorehouse.com" target="_blank">  zmorehouse.com</a> project.</p>
+          <p className={styles.poweredby}> A <a href="https://zmorehouse.com" target="_blank">  zmorehouse.com</a> project</p>
 
         </main>
 

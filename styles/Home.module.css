@@ -29,6 +29,12 @@
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   color: white;
+  height:65%;
+  margin-bottom: 75px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
 
 /* Card layout */
@@ -217,7 +223,6 @@
 
 /* Player section */
 .player {
-  min-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -236,8 +241,9 @@
 .cards {
   display: flex;
   gap: 10px;
-  min-height: 50px; /* Ensures hands don’t shift */
+
 }
+
 
 /* Buttons should always take up the same space */
 .handControls {
@@ -608,4 +614,18 @@
 .finalline {
   margin-top:10px;
   color:#ffcc00;
+}
+
+.startButton {
+  position:absolute;
+  bottom:80px;
+  font-family: DePixelHalbfett;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  width:150px;
+  height:65px;
+  font-size:14px;
+  border-style:solid;
+  border-color:#b58503;
+  border-radius:4px;
 }
