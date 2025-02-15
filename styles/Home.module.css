@@ -1,230 +1,312 @@
-.page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-family: var(--font-geist-sans);
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #004225; /* Deep green like a casino table */
 }
 
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+/* Game area takes 2/3 of the screen */
+.gameArea {
+  flex: 2;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
-}
-
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
-}
-
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
-  display: flex;
-  gap: 16px;
-}
-
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  border: none;
-  border: 1px solid transparent;
-  transition:
-    background 0.2s,
-    color 0.2s,
-    border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-.footer {
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
   align-items: center;
-  gap: 8px;
+  background: radial-gradient(circle, #006400 40%, #004225 100%);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.4);
+  border-right: 4px solid #222;
 }
 
-.footer img {
-  flex-shrink: 0;
+/* Dealer and Player sections */
+.table {
+  width: 90%;
+  max-width: 900px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+/* Card layout */
+.cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
-  }
+.cards span {
+  font-size: 1.8rem;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
 
-  .main {
-    align-items: center;
-  }
+/* Dealer styling */
+.dealer {
+  text-align: center;
+  padding-bottom: 15px;
+}
 
-  .main ol {
-    text-align: center;
-  }
+.dealer h2 {
+  font-size: 1.5rem;
+  color: #ffd700; /* Gold like a casino feel */
+}
 
-  .ctas {
+/* Player section */
+.player h2 {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.player .handControls {
+  margin-top: 10px;
+}
+
+
+/* Info panel takes 1/3 of the screen */
+.infoPane {
+  flex: 1;
+  padding: 20px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-left: 4px solid #333;
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 1350px) {
+  .container {
     flex-direction: column;
+    height: auto;
+    overflow: auto;
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .gameArea {
+    flex: none;
+    width: 100%;
+    height: auto;
+    padding-bottom: 30px;
   }
 
-  a.secondary {
-    min-width: auto;
+  .infoPane {
+    flex: none;
+    width: 100%;
+    height: auto;
+    padding: 30px;
+    border-left: none;
+    border-top: 4px solid #333;
   }
 
-  .footer {
-    flex-wrap: wrap;
+  .table {
+    width: 95%;
+  }
+}
+/* Player Section */
+.player {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Default: Single hand (centered) */
+.handsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px; /* Ensures enough space for controls */
+}
+
+/* Individual hands */
+.hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 50px; /* Ensures space for buttons */
+}
+
+/* Cards inside hands */
+.cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* When split, display hands side by side */
+.multipleHands {
+  justify-content: space-evenly;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1350px) {
+  .handsContainer {
+    flex-direction: column;
     align-items: center;
+  }
+
+  .multipleHands {
     justify-content: center;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+/* Ensure the container always fills the screen */
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Game area should stay consistent */
+.gameArea {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px; /* Ensures it doesn't collapse */
+}
+
+/* Dealer section - Prevent shifting */
+.dealer {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Player section */
+.player {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Hands should stay fixed to avoid moving around */
+.handsContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Cards stay in place */
+.cards {
+  display: flex;
+  gap: 10px;
+  min-height: 50px; /* Ensures hands don’t shift */
+}
+
+/* Buttons should always take up the same space */
+.handControls {
+  position: absolute;
+  bottom: -50px; /* Pushes controls under the hand */
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Ensuring the Info Pane stays fixed */
+.infoPane {
+  flex: 1;
+  padding: 20px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+/* Responsive: Stack layout on smaller screens */
+@media (max-width: 1350px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+
+  .gameArea,
+  .infoPane {
+    flex: none;
+    width: 100%;
+    height: auto;
   }
 }
+/* Prevent button shifting */
+.hidden {
+  visibility: hidden; /* Keeps space reserved while hiding content */
+}
 
-.page {
+/* Ensure dealer score always takes up space */
+.dealerScore {
+  min-height: 24px; /* Adjust to match the text height */
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Ensure the controls stay fixed under the hands */
+.controlsContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #0b3d02; /* Dark green like a casino table */
-  color: white;
+  gap: 15px;
+  margin-top: 20px; /* Adds space between cards and buttons */
+  min-height: 50px; /* Ensures height is stable to prevent shifting */
 }
 
-.main {
-  text-align: center;
-}
-
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.table {
-  background-color: #0f2a02;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 600px;
-  margin: auto;
-}
-
-.dealer, .player {
-  margin-bottom: 20px;
-}
-
-.cards {
-  height: 100px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-}
-
-.startButton {
-  background-color: gold;
-  color: black;
-  font-size: 1.2rem;
-  padding: 10px 20px;
+/* Style all action buttons similarly */
+.actionButton {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 6px;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s;
 }
 
-.startButton:hover {
-  background-color: darkgoldenrod;
+/* Different button colors */
+.splitButton { background-color: #f39c12; color: white; }
+.hitButton { background-color: #27ae60; color: white; }
+.standButton { background-color: #c0392b; color: white; }
+.doubleDownButton { background-color: #2980b9; color: white; }
+.startButton { background-color:#f39c12; color:white;}
+
+/* Hover effects */
+.actionButton:hover {
+  opacity: 0.8;
 }
 
+
+
+
+.stats {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #222;
+  color: white;
+  border-radius: 6px;
+  width: 300px;
+}
