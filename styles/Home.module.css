@@ -628,3 +628,49 @@
   border-color:#b58503;
   border-radius:4px;
 }
+@keyframes flashGreen {
+  0% { box-shadow: 0 0 0px rgba(0, 255, 0, 0); border-color: transparent; }
+  50% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.8); border-color: rgba(0, 255, 0, 0.6); }
+  100% { box-shadow: 0 0 0px rgba(0, 255, 0, 0); border-color: transparent; }
+}
+
+@keyframes flashRed {
+  0% { box-shadow: 0 0 0px rgba(255, 0, 0, 0); border-color: transparent; }
+  50% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); border-color: rgba(255, 0, 0, 0.6); }
+  100% { box-shadow: 0 0 0px rgba(255, 0, 0, 0); border-color: transparent; }
+}
+
+.gameArea {
+  transition: border 0.3s ease-in-out;
+  border: 6px solid transparent;
+  border-radius: 10px; /* Rounded corners */
+}
+
+.correctFlash {
+  animation: flashGreen 0.5s ease-in-out;
+}
+
+.incorrectFlash {
+  animation: flashRed 0.5s ease-in-out;
+}
+
+.resources {
+  font-family:'LeviWindows';
+  color:#f39c12;
+margin:5px;
+}
+
+.resources:hover {
+  color:white;
+}
+
+.resourcesCopy {
+  text-align:center;
+}
+
+.resourcesCopyList {
+    text-align:center;
+    font-size:16px;
+    margin-top:5px;
+    margin-bottom:5px;
+}

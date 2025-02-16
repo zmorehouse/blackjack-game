@@ -61,10 +61,8 @@ export default function Home() {
   const [infoTab, setInfoTab] = useState("home");
   const [correctMoves, setCorrectMoves] = useState(0);
   const [incorrectMoves, setIncorrectMoves] = useState(0);
-  const [showOptimalMove, setShowOptimalMove] = useState(true);
-
-
-
+  const [showOptimalMove, setShowOptimalMove] = useState(false);
+  const [lastMoveCorrect, setLastMoveCorrect] = useState(null);
 
   const startGame = () => {
     let newDeck = shuffleDeck(createDeck()); // Always reshuffle a new 4-deck shoe
@@ -214,53 +212,60 @@ export default function Home() {
 
   const hit = () => {
     if (!playerTurn || gameOver) return;
-
+  
     let newDeck = [...deck];
     let hands = [...playerHands];
     let hand = hands[currentHandIndex];
     let dealerCard = dealerHand[0];
-
+  
     let optimalMove = getOptimalMove(hand, dealerCard);
-
-    // Track correct or incorrect move
+  
+    // Track correct or incorrect move and trigger flash effect
     if (optimalMove === "H") {
       setCorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(true);
     } else {
       setIncorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(false);
     }
-
+  
     hand.push(newDeck.pop());
     setDeck(newDeck);
     setPlayerHands(hands);
-
+  
     let handValue = calculateHandValue(hand);
     if (handValue >= 21) {
       autoAdvanceToNextHand();
     }
-  };
+  
+    // Reset the effect after a short delay
+    setTimeout(() => setLastMoveCorrect(null), 500);
+  };  
 
 
   const stand = () => {
     if (!playerTurn || gameOver) return;
-
+  
     let hands = [...playerHands];
     let hand = hands[currentHandIndex];
     let dealerCard = dealerHand[0];
-
+  
     let optimalMove = getOptimalMove(hand, dealerCard);
-
-    // Track correct or incorrect move
+  
+    // Track correct or incorrect move and trigger flash effect
     if (optimalMove === "S") {
       setCorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(true);
     } else {
       setIncorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(false);
     }
-
+  
     let newIndex = currentHandIndex + 1;
     while (newIndex < hands.length && calculateHandValue(hands[newIndex]) === 21) {
       newIndex++;
     }
-
+  
     if (newIndex >= hands.length) {
       setPlayerTurn(false);
       setRevealDealer(true);
@@ -268,7 +273,11 @@ export default function Home() {
     } else {
       setCurrentHandIndex(newIndex);
     }
+  
+    // Reset flash effect after 500ms
+    setTimeout(() => setLastMoveCorrect(null), 500);
   };
+  
 
 
 
@@ -285,59 +294,71 @@ export default function Home() {
 
   const doubleDown = () => {
     if (!canDoubleDown() || gameOver) return;
-
+  
     let hands = [...playerHands];
     let hand = hands[currentHandIndex];
     let dealerCard = dealerHand[0];
-
+  
     let optimalMove = getOptimalMove(hand, dealerCard);
-
-    // Track correct or incorrect move
+  
+    // Track correct or incorrect move and trigger flash effect
     if (optimalMove === "D") {
       setCorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(true);
     } else {
       setIncorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(false);
     }
-
+  
     let newDeck = [...deck];
-    hand.push(newDeck.pop());
+    hand.push(newDeck.pop()); // Player gets only one more card
     setDeck(newDeck);
     setPlayerHands(hands);
-
+  
     autoAdvanceToNextHand();
+  
+    // Reset flash effect after 500ms
+    setTimeout(() => setLastMoveCorrect(null), 500);
   };
+  
 
 
 
 
   const splitHand = () => {
     if (!canSplit() || gameOver) return;
-
+  
     let hands = [...playerHands];
     let hand = hands[currentHandIndex];
     let dealerCard = dealerHand[0];
-
+  
     let optimalMove = getOptimalMove(hand, dealerCard);
-
-    // Track correct or incorrect move
+  
+    // Track correct or incorrect move and trigger flash effect
     if (optimalMove === "P") {
       setCorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(true);
     } else {
       setIncorrectMoves(prev => prev + 1);
+      setLastMoveCorrect(false);
     }
-
+  
     let newDeck = [...deck];
     let newHand1 = [hand[0], newDeck.pop()];
     let newHand2 = [hand[1], newDeck.pop()];
-
+  
     hands.splice(currentHandIndex, 1, newHand1, newHand2);
     setDeck(newDeck);
     setPlayerHands(hands);
-
+  
     if (calculateHandValue(newHand1) === 21) {
       autoAdvanceToNextHand();
     }
+  
+    // Reset flash effect after 500ms
+    setTimeout(() => setLastMoveCorrect(null), 500);
   };
+  
 
 
 
@@ -395,7 +416,7 @@ export default function Home() {
       
       <div className={styles.container}>
         
-        <main className={styles.gameArea}>
+      <main className={`${styles.gameArea} ${lastMoveCorrect === true ? styles.correctFlash : ""} ${lastMoveCorrect === false ? styles.incorrectFlash : ""}`}>
           
           <div className={styles.table}>
             <div className={styles.dealer}>
@@ -678,7 +699,39 @@ export default function Home() {
           ) : infoTab == "moreinfo" ? (
             <>
               <h2 className={styles.title}>More Info</h2>
-              
+              <p className={styles.resourcesCopy}>
+Blackjack is the most profitable game in the casino when played correctly. With optimal strategy, you can reduce the house edge to 0.23599%—making it the best bet on the floor.</p>
+
+              <h2 className={styles.statsTitle}><span>How The House Profits</span></h2>
+              <p className={styles.resourcesCopyList}>
+Even so, theres plenty of ways the casino's look to screw you : </p>
+<p className={styles.resourcesCopyList}>
+
+Offering / Taking Insurance <br/> Insurance is never worthwhile, don't get suckered into it! </p>
+<p className={styles.resourcesCopyList}>
+
+Offering Side Bets <br/> (Think betting on pairs, betting on dealer blackjack, etc.)</p>
+<p className={styles.resourcesCopyList}>
+
+6:5 Blackjack <br/> Some casinos payout 6:5 instead of 3:2. House edge jumps nearly 1.4% </p>
+<p className={styles.resourcesCopyList}>
+
+Dealer Hits on Soft 17 <br/> A small rule but one that fundamentally changes basic strategy.</p>
+<p className={styles.resourcesCopyList}>
+
+Blackjack Plus (Australia) <br/> For the Aussies out there. Avoid Blackjack Plus at Star & Crown. The dealer pushes on 22 which throws basic strategy out the window.
+</p>
+<h2 className={styles.statsTitle}><span>Some Useful Resources</span></h2>
+<a className={styles.resources} href="https://www.blackjackapprenticeship.com/blackjack-calculator/" target="_blank">
+House Edge Calculator</a>
+<a className={styles.resources} href="https://www.theplaidhorse.com/2025/01/23/how-to-spot-and-avoid-unfavorable-blackjack-tables/" target="_blank">
+Avoiding Dodgy Tables</a>
+<a className={styles.resources} href="https://wizardofodds.com/gambling/house-edge/" target="_blank">
+House Edge of ALL Casino Games</a>
+<a className={styles.resources} href="https://www.shs-conferences.org/articles/shsconf/pdf/2022/18/shsconf_icprss2022_03038.pdf" target="_blank">
+Additional Sources</a>
+
+
             </>
           ) : null}
         </aside>
