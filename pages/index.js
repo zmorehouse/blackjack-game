@@ -479,12 +479,12 @@ export default function Home() {
                       {index === currentHandIndex && !gameOver && playerTurn && (
                         <div className={styles.handControls}>
                           {canSplit() && (
-                            <button className={`${styles.actionButton} ${styles.splitButton}`} onClick={splitHand}>P</button>
+                            <button className={`${styles.actionButton} ${styles.splitButton}`} onClick={splitHand}>Split</button>
                           )}
-                          <button className={`${styles.actionButton} ${styles.hitButton}`} onClick={hit}>H</button>
-                          <button className={`${styles.actionButton} ${styles.standButton}`} onClick={stand}>S</button>
+                          <button className={`${styles.actionButton} ${styles.hitButton}`} onClick={hit}>Hit</button>
+                          <button className={`${styles.actionButton} ${styles.standButton}`} onClick={stand}>Stand</button>
                           {canDoubleDown() && (
-                            <button className={`${styles.actionButton} ${styles.doubleDownButton}`} onClick={doubleDown}>D</button>
+                            <button className={`${styles.actionButton} ${styles.doubleDownButton}`} onClick={doubleDown}>Double</button>
                           )}
                         </div>
                       )}

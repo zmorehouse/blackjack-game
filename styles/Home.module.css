@@ -26,11 +26,12 @@
   max-width: 900px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-style:solid;
+  border-color:#145a26;
   color: white;
-  height:65%;
-  margin-bottom: 75px;
+  height:80%;
+  margin-bottom: 25px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -279,6 +280,18 @@
     width: 100%;
     height: auto;
   }
+
+  .startButton {
+    position:static !important;
+    margin-bottom:15px;
+  }
+  .poweredby {
+    position:static !important;
+  }
+
+  .table {
+    margin-bottom:20px;
+  }
 }
 /* Prevent button shifting */
 .hidden {
@@ -304,12 +317,15 @@
 
 /* Style all action buttons similarly */
 .actionButton {
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
+  letter-spacing: -1px;
 
+  font-size: 12px;
+  border-radius: 2px;
+  width:75px;
+  height:50px;
+  border: none;
+  font-family: "DePixelHalbfett";
+  text-transform:uppercase;
     transition: 0.2s;
 }
 
@@ -319,15 +335,15 @@
   color: white;
 }
 .hitButton {
-  background-color: #27ae60;
+  background-color: #219652;
   color: white;
 }
 .standButton {
-  background-color: #c0392b;
+  background-color: #b22a1a;
   color: white;
 }
 .doubleDownButton {
-  background-color: #2980b9;
+  background-color: #1d689a;
   color: white;
 }
 .startButton {
@@ -337,7 +353,7 @@
 
 /* Hover effects */
 .actionButton:hover {
-  opacity: 0.8;
+transform:scale(1.05);
 }
 
 .stats {
@@ -618,15 +634,12 @@
 .startButton {
   position:absolute;
   bottom:80px;
-  font-family: DePixelHalbfett;
   text-transform: uppercase;
-  letter-spacing: -1px;
   width:150px;
   height:65px;
   font-size:14px;
-  border-style:solid;
-  border-color:#b58503;
-  border-radius:4px;
+
+  border-radius:2px;
 }
 @keyframes flashGreen {
   0% { box-shadow: 0 0 0px rgba(0, 255, 0, 0); border-color: transparent; }
