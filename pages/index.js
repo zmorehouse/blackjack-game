@@ -421,6 +421,7 @@ export default function Home() {
           <div className={styles.table}>
             <div className={styles.dealer}>
               <h2>Dealer</h2>
+              
               <div className={styles.cards}>
                 {dealerHand.map((card, index) => (
                   <span key={index}>{index === 0 || revealDealer ? `${card.value} ${card.suit}` : "❓"}</span>
@@ -430,7 +431,7 @@ export default function Home() {
                 {revealDealer ? `Score: ${calculateHandValue(dealerHand)}` : ""}
               </p>
             </div>
-
+            
 
             <div className={styles.player}>
               <h2>You</h2>

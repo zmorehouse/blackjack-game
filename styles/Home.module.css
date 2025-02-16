@@ -63,14 +63,20 @@
 }
 
 .dealer h2 {
-  font-size: 1.5rem;
-  color: #ffd700; /* Gold like a casino feel */
+font-size:18px; 
+letter-spacing:-1px;
+  text-transform:uppercase;
+  color: #f39c12; /* Gold like a casino feel */
 }
 
 /* Player section */
 .player h2 {
-  font-size: 1.5rem;
+
   color: white;
+  font-size:18px; 
+  text-transform:uppercase;
+
+letter-spacing:-1px;
 }
 
 .player .handControls {
