@@ -372,8 +372,8 @@
 }
 
 .navButton.active {
-  font-weight: bold;
-  text-decoration: underline;
+  text-decoration: underline !important;
+  text-decoration-thickness:2px !important;
 }
 
 .tooltipContainer {

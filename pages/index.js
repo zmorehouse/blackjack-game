@@ -110,18 +110,18 @@ export default function Home() {
     console.log("Player Values:", playerValues);
 
     let numericValues = playerValues.map(val => val === "A" ? 1 : parseInt(val));
-
     let handTotal = numericValues.reduce((acc, card) => acc + card, 0);
-
     let hasAce = playerValues.includes("A");
     let isSoft = hasAce && handTotal + 10 <= 21; // True if Ace can safely be 11
-
     let isPair = numericValues.length === 2 &&
       (["10", "J", "Q", "K"].includes(playerValues[0]) &&
         ["10", "J", "Q", "K"].includes(playerValues[1]) ||
         playerValues[0] === playerValues[1]);
 
     let dealerNumericValue = ["J", "Q", "K", "10"].includes(dealerValue) ? 10 : (dealerValue === "A" ? 11 : parseInt(dealerValue));
+
+    // Prevent doubling if more than two cards are in hand
+    const canDouble = hand.length === 2;
 
     // **PAIR STRATEGY**
     if (isPair) {
@@ -133,7 +133,7 @@ export default function Home() {
         16: "P",
         14: dealerNumericValue >= 2 && dealerNumericValue <= 7 ? "P" : "H",
         12: dealerNumericValue >= 2 && dealerNumericValue <= 6 ? "P" : "H",
-        10: dealerNumericValue >= 2 && dealerNumericValue <= 9 ? "D" : "H",
+        10: canDouble ? (dealerNumericValue >= 2 && dealerNumericValue <= 9 ? "D" : "H") : "H",
         8: "P",
         6: dealerNumericValue >= 2 && dealerNumericValue <= 7 ? "P" : "H",
         4: dealerNumericValue >= 5 && dealerNumericValue <= 6 ? "P" : "H",
@@ -147,13 +147,17 @@ export default function Home() {
       console.log(`Soft Hand: A + ${handTotal - 1} | Soft Total: ${softTotal} | Dealer: ${dealerNumericValue}`);
 
       const softStrategy = {
-        13: dealerNumericValue >= 5 && dealerNumericValue <= 6 ? "D" : "H",
-        14: dealerNumericValue >= 5 && dealerNumericValue <= 6 ? "D" : "H",
-        15: dealerNumericValue >= 4 && dealerNumericValue <= 6 ? "D" : "H",
-        16: dealerNumericValue >= 4 && dealerNumericValue <= 6 ? "D" : "H",
-        17: dealerNumericValue >= 3 && dealerNumericValue <= 6 ? "D" : "H",
-        18: dealerNumericValue >= 2 && dealerNumericValue <= 6 ? "D" : (dealerNumericValue >= 7 && dealerNumericValue <= 8 ? "S" : "H"),
-        19: dealerNumericValue === 6 ? "D" : "S",
+        13: canDouble && dealerNumericValue >= 5 && dealerNumericValue <= 6 ? "D" : "H",
+        14: canDouble && dealerNumericValue >= 5 && dealerNumericValue <= 6 ? "D" : "H",
+        15: canDouble && dealerNumericValue >= 4 && dealerNumericValue <= 6 ? "D" : "H",
+        16: canDouble && dealerNumericValue >= 4 && dealerNumericValue <= 6 ? "D" : "H",
+        17: canDouble && dealerNumericValue >= 3 && dealerNumericValue <= 6 ? "D" : "H",
+        18: canDouble && dealerNumericValue >= 2 && dealerNumericValue <= 6 
+        ? "D" 
+        : (dealerNumericValue >= 7 && dealerNumericValue <= 8 
+          ? "S" 
+          : "H"),     
+        19: canDouble && dealerNumericValue === 6 ? "D" : "S",
         20: "S",
         21: "S"
       };
@@ -163,9 +167,9 @@ export default function Home() {
     // **HARD HAND STRATEGY**
     const hardStrategy = {
       5: "H", 6: "H", 7: "H", 8: "H",
-      9: dealerNumericValue >= 3 && dealerNumericValue <= 6 ? "D" : "H",
-      10: dealerNumericValue >= 2 && dealerNumericValue <= 9 ? "D" : "H",
-      11: "D",
+      9: canDouble && dealerNumericValue >= 3 && dealerNumericValue <= 6 ? "D" : "H",
+      10: canDouble && dealerNumericValue >= 2 && dealerNumericValue <= 9 ? "D" : "H",
+      11: canDouble ? "D" : "H",
       12: dealerNumericValue >= 4 && dealerNumericValue <= 6 ? "S" : "H",
       13: dealerNumericValue >= 2 && dealerNumericValue <= 6 ? "S" : "H",
       14: dealerNumericValue >= 2 && dealerNumericValue <= 6 ? "S" : "H",
@@ -175,7 +179,7 @@ export default function Home() {
       18: "S", 19: "S", 20: "S", 21: "S"
     };
     return hardStrategy[handTotal] || "H";
-  };
+};
 
 
 
@@ -526,10 +530,10 @@ export default function Home() {
 
                 {/* Tooltip content - inside the same parent */}
                 <div className={styles.tooltipContent}>
-                  Assuming then following :
+                  Assuming the following :
                   <ul>
-                    <li>4 decks are used.</li>
-                    <li>Dealer Stands on soft 17</li>
+                    <li>4 decks are used</li>
+                    <li>Dealer stands on soft 17</li>
                     <li>Players can double on any cards</li>
                     <li>Players can split any cards</li>
                     <li>Players can resplit to 4 hands</li>
@@ -623,15 +627,14 @@ export default function Home() {
                   <th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
                   <th>7</th><th>8</th><th>9</th><th>10</th><th>A</th>
                 </tr>
-                <tr><td>Hard 5</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
-                <tr><td>Hard 6</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
-                <tr><td>Hard 7</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
-                <tr><td>Hard 8</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
+                <tr><td>Hard 5 - 8</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
                 <tr><td>Hard 9</td><td>H</td><td>D</td><td>D</td><td>D</td><td>D</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
                 <tr><td>Hard 10</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>H</td><td>H</td></tr>
                 <tr><td>Hard 11</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td><td>D</td></tr>
                 <tr><td>Hard 12</td><td>H</td><td>H</td><td>S</td><td>S</td><td>S</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
-                <tr><td>Hard 13+</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
+                <tr><td>Hard 13 - 16</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
+                <tr><td>Hard 17 - 21</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td></tr>
+
               </table>
 
               <h3>Soft Totals</h3>
@@ -647,6 +650,9 @@ export default function Home() {
                 <tr><td>Ace + 5</td><td>H</td><td>H</td><td>D</td><td>D</td><td>D</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
                 <tr><td>Ace + 6</td><td>H</td><td>D</td><td>D</td><td>D</td><td>D</td><td>H</td><td>H</td><td>H</td><td>H</td><td>H</td></tr>
                 <tr><td>Ace + 7</td><td>DS</td><td>DS</td><td>DS</td><td>DS</td><td>DS</td><td>S</td><td>S</td><td>H</td><td>H</td><td>H</td></tr>
+                <tr><td>Ace + 8</td><td>S</td><td>S</td><td>S</td><td>S</td><td>DS</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td></tr>
+                <tr><td>Ace + 9</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td><td>S</td></tr>
+
               </table>
 
               <h3>Pairs</h3>
