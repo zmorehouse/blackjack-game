@@ -1,13 +1,11 @@
-
 .container {
   display: flex;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #004225; 
+  background-color: #004225;
 }
 
-/* Game area takes 2/3 of the screen */
 .gameArea {
   flex: 2;
   padding: 20px;
@@ -20,25 +18,23 @@
   border-right: 4px solid #222;
 }
 
-/* Dealer and Player sections */
 .table {
   width: 90%;
   max-width: 900px;
   padding: 20px;
   background: rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  border-style:solid;
-  border-color:#145a26;
+  border-style: solid;
+  border-color: #145a26;
   color: white;
-  height:80%;
+  height: 80%;
   margin-bottom: 25px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Card layout */
 .cards {
   display: flex;
   gap: 10px;
@@ -56,27 +52,24 @@
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Dealer styling */
 .dealer {
   text-align: center;
   padding-bottom: 15px;
 }
 
 .dealer h2 {
-font-size:18px; 
-letter-spacing:-1px;
-  text-transform:uppercase;
-  color: #f39c12; /* Gold like a casino feel */
+  font-size: 18px;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #f39c12;
 }
 
-/* Player section */
 .player h2 {
-
   color: white;
-  font-size:18px; 
-  text-transform:uppercase;
+  font-size: 18px;
+  text-transform: uppercase;
 
-letter-spacing:-1px;
+  letter-spacing: -1px;
 }
 
 .player .handControls {
@@ -96,34 +89,161 @@ letter-spacing:-1px;
 }
 
 .infoPane {
-  max-height: 100vh; /* Ensures the panel doesn't exceed the screen height */
-  overflow-y: auto; /* Enables vertical scrolling */
-  padding-right: 10px; /* Prevents content from touching the scrollbar */
-  scrollbar-width: thin; /* Firefox: Makes scrollbar thinner */
-  scrollbar-color: #888 transparent; /* Firefox: Custom scrollbar color */
+  max-height: 100vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
 }
 
-/* For Webkit browsers (Chrome, Safari, Edge) */
 .infoPane::-webkit-scrollbar {
-  width: 8px; /* Adjust scrollbar width */
+  width: 8px;
 }
 
 .infoPane::-webkit-scrollbar-track {
-  background: transparent; /* Keeps the track background clean */
+  background: transparent;
 }
 
 .infoPane::-webkit-scrollbar-thumb {
-  background: #888; /* Scrollbar color */
+  background: #888;
   border-radius: 4px;
 }
 
 .infoPane::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Darker scrollbar on hover */
+  background: #555;
 }
 
+.player {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 
-/* Responsive Design for Small Screens */
+.handsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding-bottom: 50px;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+}
+
+.multipleHands {
+  justify-content: space-evenly;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.gameArea {
+  flex: 2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 500px;
+}
+
+.dealer {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.handsContainer {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+}
+
+.handControls {
+  position: absolute;
+  bottom: -50px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.infoPane {
+  flex: 1;
+  padding: 20px;
+  background-color: #222;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 500px;
+}
+
 @media (max-width: 1350px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+
+  .gameArea,
+  .infoPane {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .startButton {
+    position: static !important;
+    margin-bottom: 15px;
+  }
+  .poweredby {
+    position: static !important;
+  }
+
+  .table {
+    margin-bottom: 20px;
+  }
+
+  .handsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .multipleHands {
+    justify-content: center;
+  }
+
   .container {
     flex-direction: column;
     height: auto;
@@ -150,192 +270,39 @@ letter-spacing:-1px;
     width: 95%;
   }
 }
-/* Player Section */
-.player {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
 
-/* Default: Single hand (centered) */
-.handsContainer {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 40px; /* Ensures enough space for controls */
-}
-
-/* Individual hands */
-.hand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  padding-bottom: 50px; /* Ensures space for buttons */
-}
-
-/* Cards inside hands */
-.cards {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  padding: 10px;
-}
-
-/* When split, display hands side by side */
-.multipleHands {
-  justify-content: space-evenly;
-}
-
-/* Responsive adjustments */
-@media (max-width: 1350px) {
-  .handsContainer {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .multipleHands {
-    justify-content: center;
-  }
-}
-
-/* Ensure the container always fills the screen */
-.container {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Game area should stay consistent */
-.gameArea {
-  flex: 2;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 500px; /* Ensures it doesn't collapse */
-}
-
-/* Dealer section - Prevent shifting */
-.dealer {
-  min-height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Player section */
-.player {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Hands should stay fixed to avoid moving around */
-.handsContainer {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
-}
-
-/* Cards stay in place */
-.cards {
-  display: flex;
-  gap: 10px;
-
-}
-
-/* Buttons should always take up the same space */
-.handControls {
-  position: absolute;
-  bottom: -50px; /* Pushes controls under the hand */
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* Ensuring the Info Pane stays fixed */
-.infoPane {
-  flex: 1;
-  padding: 20px;
-  background-color: #222;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 500px;
-}
-
-/* Responsive: Stack layout on smaller screens */
-@media (max-width: 1350px) {
-  .container {
-    flex-direction: column;
-    height: auto;
-    overflow: auto;
-  }
-
-  .gameArea,
-  .infoPane {
-    flex: none;
-    width: 100%;
-    height: auto;
-  }
-
-  .startButton {
-    position:static !important;
-    margin-bottom:15px;
-  }
-  .poweredby {
-    position:static !important;
-  }
-
-  .table {
-    margin-bottom:20px;
-  }
-}
-/* Prevent button shifting */
 .hidden {
-  visibility: hidden; /* Keeps space reserved while hiding content */
+  visibility: hidden;
 }
 
-/* Ensure dealer score always takes up space */
 .dealerScore {
-  min-height: 24px; /* Adjust to match the text height */
+  min-height: 24px;
   font-size: 18px;
   font-weight: bold;
 }
 
-/* Ensure the controls stay fixed under the hands */
 .controlsContainer {
   width: 100%;
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-top: 20px; /* Adds space between cards and buttons */
-  min-height: 50px; /* Ensures height is stable to prevent shifting */
+  margin-top: 20px;
+  min-height: 50px;
 }
 
-/* Style all action buttons similarly */
 .actionButton {
   letter-spacing: -1px;
 
   font-size: 12px;
   border-radius: 2px;
-  width:75px;
-  height:50px;
+  width: 75px;
+  height: 50px;
   border: none;
   font-family: "DePixelHalbfett";
-  text-transform:uppercase;
-    transition: 0.2s;
+  text-transform: uppercase;
+  transition: 0.2s;
 }
 
-/* Different button colors */
 .splitButton {
   background-color: #f39c12;
   color: white;
@@ -357,9 +324,8 @@ letter-spacing:-1px;
   color: white;
 }
 
-/* Hover effects */
 .actionButton:hover {
-transform:scale(1.05);
+  transform: scale(1.05);
 }
 
 .stats {
@@ -373,7 +339,7 @@ transform:scale(1.05);
   border-radius: 6px;
   width: 100%;
 }
-/* Style the navigation buttons */
+
 .navLinks {
   display: flex;
   justify-content: center;
@@ -390,18 +356,18 @@ transform:scale(1.05);
 }
 
 .navButton:hover {
-  color: #f5a623; /* Highlight effect on hover */
+  color: #f5a623;
 }
 
 .navButton.active {
   text-decoration: underline !important;
-  text-decoration-thickness:2px !important;
+  text-decoration-thickness: 2px !important;
 }
 
 .tooltipContainer {
   position: relative;
   display: inline-block;
-  text-align:center;
+  text-align: center;
 }
 
 .tooltipTrigger {
@@ -415,8 +381,8 @@ transform:scale(1.05);
   opacity: 0;
   position: absolute;
   width: 300px;
-  padding:25px;
-  padding-left:30px;
+  padding: 25px;
+  padding-left: 30px;
   background-color: rgb(2, 37, 0);
   color: white;
   text-align: left;
@@ -431,8 +397,8 @@ transform:scale(1.05);
 }
 
 .tooltipContent li {
-  margin-left:20px;
-  margin-top:5px;
+  margin-left: 20px;
+  margin-top: 5px;
 }
 
 .tooltipContainer:hover .tooltipContent {
@@ -461,24 +427,23 @@ transform:scale(1.05);
   content: "";
   flex: 1;
   height: 1px;
-  background-color: #cacaca; 
+  background-color: #cacaca;
 }
 .statsTitle::before {
-  margin-right:15px;
+  margin-right: 15px;
 }
 .statsTitle::after {
-  margin-left:15px;
+  margin-left: 15px;
 }
 
 .divider {
   content: "";
   flex: 1;
   height: 1px;
-  background-color: #cacaca; 
-  margin-top:10px;
-  margin-bottom:15px;
+  background-color: #cacaca;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
-
 
 .stats {
   max-width: 400px;
@@ -486,9 +451,9 @@ transform:scale(1.05);
 }
 
 .statRow {
-  font-family:'LeviWindows';
+  font-family: "LeviWindows";
 
-  font-size:18px !important;
+  font-size: 18px !important;
 }
 
 .statsTitle {
@@ -501,14 +466,14 @@ transform:scale(1.05);
 
 .statRow {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   font-size: 16px;
   font-weight: bold;
   padding: 5px 0;
   position: relative;
-  height:40px;
+  height: 40px;
 }
 
 .toggleResetContainer {
@@ -516,19 +481,18 @@ transform:scale(1.05);
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  margin-bottom:20px;
+  margin-bottom: 20px;
   gap: 20px;
-  font-family:'LeviWindows';
+  font-family: "LeviWindows";
 }
 
 .resetButton {
   flex: 1;
-  max-width: 150px; 
-  padding:15px;
-  font-family:'DePixelHalbfett';
-  text-transform:uppercase;
-  letter-spacing:-1px;  
-
+  max-width: 150px;
+  padding: 15px;
+  font-family: "DePixelHalbfett";
+  text-transform: uppercase;
+  letter-spacing: -1px;
 }
 
 .toggleLabel {
@@ -546,82 +510,77 @@ transform:scale(1.05);
 }
 
 .footerdiv {
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .footerdiv a {
-  color:#f5a623;
-  text-decoration:underline;
-
+  color: #f5a623;
+  text-decoration: underline;
 }
 
 .poweredby {
-  position:absolute;
-  bottom:20px;
-  color:#123512;
+  position: absolute;
+  bottom: 20px;
+  color: #123512;
 }
 
 .cheatsheets {
-  width:100%;
-
+  width: 100%;
 }
 
 .title {
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 .cheatsheets p {
-  font-size:16px;
-  text-align:center;
+  font-size: 16px;
+  text-align: center;
 }
 
 .cheatsheets h3 {
-  font-family:'DePixelHalbfett';
-  font-size:14px;
-  text-transform:uppercase;
-  margin-top:15px;
-  margin-bottom:10px;
-  text-align:center;
+  font-family: "DePixelHalbfett";
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .cheatsheets table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
-  background: #222; /* Dark background for contrast */
+  background: #222;
   color: white;
   overflow: hidden;
-  font-family:'LeviWindows';
-
+  font-family: "LeviWindows";
 }
 
-
-
-.cheatsheets th, 
+.cheatsheets th,
 .cheatsheets td {
   padding: 12px;
   text-align: center;
-  border: 1px solid #444; /* Subtle borders */
+  border: 1px solid #444;
 }
 
 .cheatsheets th {
-  background-color: #ffcc00; /* Golden header */
+  background-color: #ffcc00;
   color: #222;
   font-weight: bold;
 }
 
 .cheatsheets tr:nth-child(even) {
-  background-color: #333; /* Darker background for alternating rows */
+  background-color: #333;
 }
 
 .cheatsheets tr:hover {
-  background-color: #444; /* Highlight row on hover */
+  background-color: #444;
   transition: background 0.2s ease-in-out;
 }
 
 .cheatsheets td:first-child {
   font-weight: bold;
-  color: #ffcc00; /* Highlight first column */
+  color: #ffcc00;
 }
 
 .cheatsheets th:first-child {
@@ -633,36 +592,54 @@ transform:scale(1.05);
 }
 
 .finalline {
-  margin-top:10px;
-  color:#ffcc00;
+  margin-top: 10px;
+  color: #ffcc00;
 }
 
 .startButton {
-  position:absolute;
-  bottom:80px;
+  position: absolute;
+  bottom: 80px;
   text-transform: uppercase;
-  width:150px;
-  height:65px;
-  font-size:14px;
+  width: 150px;
+  height: 65px;
+  font-size: 14px;
 
-  border-radius:2px;
+  border-radius: 2px;
 }
 @keyframes flashGreen {
-  0% { box-shadow: 0 0 0px rgba(0, 255, 0, 0); border-color: transparent; }
-  50% { box-shadow: 0 0 15px rgba(0, 255, 0, 0.8); border-color: rgba(0, 255, 0, 0.6); }
-  100% { box-shadow: 0 0 0px rgba(0, 255, 0, 0); border-color: transparent; }
+  0% {
+    box-shadow: 0 0 0px rgba(0, 255, 0, 0);
+    border-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+    border-color: rgba(0, 255, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(0, 255, 0, 0);
+    border-color: transparent;
+  }
 }
 
 @keyframes flashRed {
-  0% { box-shadow: 0 0 0px rgba(255, 0, 0, 0); border-color: transparent; }
-  50% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.8); border-color: rgba(255, 0, 0, 0.6); }
-  100% { box-shadow: 0 0 0px rgba(255, 0, 0, 0); border-color: transparent; }
+  0% {
+    box-shadow: 0 0 0px rgba(255, 0, 0, 0);
+    border-color: transparent;
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+    border-color: rgba(255, 0, 0, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(255, 0, 0, 0);
+    border-color: transparent;
+  }
 }
 
 .gameArea {
   transition: border 0.3s ease-in-out;
   border: 6px solid transparent;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
 }
 
 .correctFlash {
@@ -674,24 +651,24 @@ transform:scale(1.05);
 }
 
 .resources {
-  font-family:'LeviWindows';
-  color:#f39c12;
-margin:5px;
+  font-family: "LeviWindows";
+  color: #f39c12;
+  margin: 5px;
 }
 
 .resources:hover {
-  color:white;
+  color: white;
 }
 
 .resourcesCopy {
-  text-align:center;
+  text-align: center;
 }
 
 .resourcesCopyList {
-    text-align:center;
-    font-size:16px;
-    margin-top:5px;
-    margin-bottom:5px;
+  text-align: center;
+  font-size: 16px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 .card {
   width: 80px;
@@ -703,8 +680,30 @@ margin:5px;
   transform-origin: center;
 }
 
+.cardImage {
+  width: 80px !important;
+  height: auto;
+  margin: 5px;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
 .card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.cardContainer {
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.hiddenCard {
+  transform: rotateY(0deg);
+}
+
+.hidden-card {
+  opacity: 0;
+  transform: translateY(30px) scale(0.8);
 }
