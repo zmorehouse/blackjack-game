@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
+import { gsap } from "gsap";
 
 const suits = ["\u2660", "\u2665", "\u2666", "\u2663"];
 const values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
@@ -42,8 +43,6 @@ const calculateHandValue = (hand = []) => {
 
   return total;
 };
-
-
 
 export default function Home() {
   const [deck, setDeck] = useState([]);
@@ -277,15 +276,11 @@ export default function Home() {
     // Reset flash effect after 500ms
     setTimeout(() => setLastMoveCorrect(null), 500);
   };
-  
-
-
 
   const canSplit = () => {
     let hand = playerHands[currentHandIndex];
     return hand.length === 2 && hand[0].value === hand[1].value && playerHands.length < 4;
   };
-
 
   const canDoubleDown = () => {
     let hand = playerHands[currentHandIndex];
@@ -321,10 +316,6 @@ export default function Home() {
     setTimeout(() => setLastMoveCorrect(null), 500);
   };
   
-
-
-
-
   const splitHand = () => {
     if (!canSplit() || gameOver) return;
   
@@ -358,9 +349,6 @@ export default function Home() {
     // Reset flash effect after 500ms
     setTimeout(() => setLastMoveCorrect(null), 500);
   };
-  
-
-
 
   const resolveDealerTurn = () => {
     let newDeck = [...deck];
@@ -496,9 +484,6 @@ export default function Home() {
 
               </div>
             </div>
-
-
-
 
           </div>
           {!playerTurn && (
@@ -731,7 +716,6 @@ Avoiding Dodgy Tables</a>
 House Edge of ALL Casino Games</a>
 <a className={styles.resources} href="https://www.shs-conferences.org/articles/shsconf/pdf/2022/18/shsconf_icprss2022_03038.pdf" target="_blank">
 Additional Sources</a>
-
 
             </>
           ) : null}
