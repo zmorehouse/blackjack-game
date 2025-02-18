@@ -323,6 +323,20 @@ export default function Home() {
   let hands = [...playerHands];
   let hand = hands[currentHandIndex];
 
+  let dealerCard = dealerHand[0];
+
+  let optimalMove = getOptimalMove(hand, dealerCard);
+
+  if (optimalMove === "H") {
+    setCorrectMoves(prev => prev + 1);
+    setLastMoveCorrect(null);
+    setTimeout(() => setLastMoveCorrect(true), 10); 
+  } else {
+    setIncorrectMoves(prev => prev + 1);
+    setLastMoveCorrect(null);
+    setTimeout(() => setLastMoveCorrect(false), 10); 
+  }
+
   // Store new card
   let newCard = newDeck.pop();
   hand.push(newCard);
@@ -350,10 +364,12 @@ export default function Home() {
 
     if (optimalMove === "S") {
       setCorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(true);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(true), 10); 
     } else {
       setIncorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(false);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(false), 10); 
     }
 
     let newIndex = currentHandIndex + 1;
@@ -395,10 +411,14 @@ export default function Home() {
 
     if (optimalMove === "D") {
       setCorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(true);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(true), 10); 
+
     } else {
       setIncorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(false);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(false), 10); 
+
     }
 
     let newDeck = [...deck];
@@ -421,10 +441,14 @@ export default function Home() {
 
     if (optimalMove === "P") {
       setCorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(true);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(true), 10); 
+
     } else {
       setIncorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(false);
+      setLastMoveCorrect(null);
+      setTimeout(() => setLastMoveCorrect(false), 10); 
+
     }
 
     let newDeck = [...deck];
