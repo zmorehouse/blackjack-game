@@ -37,7 +37,6 @@
 
 .cards {
   display: flex;
-  gap: 10px;
   justify-content: center;
   padding: 10px;
 }
@@ -136,12 +135,7 @@
   padding-bottom: 50px;
 }
 
-.cards {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  padding: 10px;
-}
+
 
 .multipleHands {
   justify-content: space-evenly;
@@ -185,10 +179,12 @@
   min-height: 200px;
 }
 
-.cards {
-  display: flex;
-  gap: 10px;
+.handsContainer h3 {
+  font-family: 'LeviWindows';
+  font-weight:900;
+  margin-top:10px
 }
+
 
 .handControls {
   position: absolute;

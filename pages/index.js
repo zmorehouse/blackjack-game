@@ -2,7 +2,7 @@
  Please ignore the garbage code I'm still learning react! */
 
 // Import Modules
-import { useState, useEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import { gsap } from "gsap";
@@ -89,7 +89,7 @@ export default function Home() {
   const [flipCompleted, setFlipCompleted] = useState(false);
 
   // Animations for dealer and player hands
-  useEffect(() => {
+  useLayoutEffect(() => {
     playerHands.forEach((hand, handIndex) => {
       hand.forEach((_, cardIndex) => {
         const cardKey = `${handIndex}-${cardIndex}`;
@@ -110,48 +110,71 @@ export default function Home() {
     });
   }, [playerHands]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dealerHand.forEach((_, index) => {
       const cardRef = dealerCardRefs.current[index];
-
+  
       if (cardRef && !animatedDealerCards.current.has(index)) {
         animatedDealerCards.current.add(index);
+  
         gsap.set(cardRef, { opacity: 0, y: -30, scale: 0.8 });
-
+  
         gsap.to(cardRef, {
           opacity: 1,
           y: 0,
           scale: 1,
           duration: 0.5,
           ease: "power2.out",
+          delay: index * 0.2, 
         });
       }
     });
   }, [dealerHand]);
-
-
-  useEffect(() => {
+  
+  useLayoutEffect(() => {
     if (revealDealer) {
       const hiddenCard = dealerCardRefs.current[1];
       hiddenCard.src = "/cards/back.png";
+  
       gsap.to(hiddenCard, {
         rotationY: 90,
         duration: 0.3,
         ease: "power2.in",
         onComplete: () => {
           hiddenCard.src = `/cards/${dealerHand[1].value}${getSuitLetter(dealerHand[1].suit)}.png`;
+  
           gsap.to(hiddenCard, {
             rotationY: 0,
             duration: 0.3,
             ease: "power2.out",
             onComplete: () => {
               setFlipCompleted(true);
+  
+              dealerHand.forEach((_, index) => {
+                const cardRef = dealerCardRefs.current[index];
+  
+                if (cardRef && !animatedDealerCards.current.has(index)) {
+                  animatedDealerCards.current.add(index);
+  
+                  gsap.set(cardRef, { opacity: 0, y: -30, scale: 0.8 });
+  
+                  gsap.to(cardRef, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: "power2.out",
+                    delay: index * 0.2, 
+                  });
+                }
+              });
             },
           });
         },
       });
     }
   }, [revealDealer]);
+  
 
   // Function to start the game / replay the game
   const startGame = () => {
@@ -163,8 +186,8 @@ export default function Home() {
     let playerInitialHand = [
       { suit: suits[0], value: fixedValue },
       { suit: suits[1], value: fixedValue }
-    ];*/
-    let dealerInitialHand = [newDeck.pop(), newDeck.pop()];
+    ]; */
+    let dealerInitialHand = [newDeck.pop(), newDeck.pop()]; 
 
     animatedPlayerCards.current.clear();
     animatedDealerCards.current.clear();
@@ -294,42 +317,26 @@ export default function Home() {
 
   // Hit function
   const hit = () => {
-    if (!playerTurn || gameOver) return;
+  if (!playerTurn || gameOver) return;
 
-    let newDeck = [...deck];
-    let hands = [...playerHands];
-    let hand = hands[currentHandIndex];
-    let dealerCard = dealerHand[0];
-    let optimalMove = getOptimalMove(hand, dealerCard);
+  let newDeck = [...deck];
+  let hands = [...playerHands];
+  let hand = hands[currentHandIndex];
 
-    if (optimalMove === " H") {
-      setCorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(true);
-    } else {
-      setIncorrectMoves(prev => prev + 1);
-      setLastMoveCorrect(false);
-    }
+  // Store new card
+  let newCard = newDeck.pop();
+  hand.push(newCard);
 
-    hand.push(newDeck.pop());
-    setDeck(newDeck);
-    setPlayerHands(hands);
-    let newCardIndex = hand.length - 1;
+  setDeck(newDeck);
+  setPlayerHands(hands);
 
-    setTimeout(() => {
-      if (playerCardRefs.current[currentHandIndex] && playerCardRefs.current[currentHandIndex][newCardIndex]) {
-        gsap.fromTo(
-          playerCardRefs.current[currentHandIndex][newCardIndex],
-          { opacity: 0, x: -50, scale: 0.8 },
-          { opacity: 1, x: 0, scale: 1, duration: 0.4, ease: "power2.out" }
-        );
-      }
-    }, 50);
+  let newCardIndex = hand.length - 1;
 
-    let handValue = calculateHandValue(hand);
-    if (handValue >= 21) {
-      autoAdvanceToNextHand();
-    }
-  };
+  let handValue = calculateHandValue(hand);
+  if (handValue >= 21) {
+    autoAdvanceToNextHand();
+  }
+};
 
   // Stand function
   const stand = () => {
@@ -577,8 +584,11 @@ export default function Home() {
                 ))}
               </div>
               <p className={styles.dealerScore}>
-                {revealDealer ? `Score: ${calculateHandValue(dealerHand)}` : ""}
-              </p>
+  Score: {revealDealer 
+    ? calculateHandValue(dealerHand) 
+    : calculateHandValue([dealerHand[0]])}
+</p>
+
             </div>
 
             <div className={styles.player}>
