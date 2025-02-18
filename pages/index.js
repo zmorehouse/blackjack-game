@@ -583,11 +583,13 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-              <p className={styles.dealerScore}>
-  Score: {revealDealer 
-    ? calculateHandValue(dealerHand) 
-    : calculateHandValue([dealerHand[0]])}
-</p>
+              {playerHands.length > 0 && (
+  <p className={styles.dealerScore}>
+    Score: {revealDealer 
+      ? calculateHandValue(dealerHand) 
+      : calculateHandValue([dealerHand[0]])}
+  </p>
+)}
 
             </div>
 
