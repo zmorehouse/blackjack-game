@@ -72,6 +72,14 @@ a {
   cursor: url("/cursor.png"), auto;
 }
 
-a, button, .customPointer, .actionButton, .navButton, .toggleInput{
+a, button, .customPointer, .actionButton, .navButton, .toggleInput, .startButton{
   cursor: url("/pointer.png"), pointer;
+}
+
+
+@font-face {
+  font-family: "Jersey10";
+  src: url("/fonts/jersey10.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }

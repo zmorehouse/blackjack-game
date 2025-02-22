@@ -1,0 +1,299 @@
+
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1E3719;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow-y: hidden !important;
+  }
+  
+  .pageContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/halftone.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7; 
+    mix-blend-mode: color-burn; 
+  }
+  
+  .contentWrapper {
+    border: 6px solid #294324;
+    margin: 50px; 
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: 90vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .logo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    width:500px;
+  }
+  
+  .divider {
+    background-color: #294324;
+    height: 4px;
+    width:475px;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+    color: white;
+    margin: 20px 0;
+    font-family:'Jersey10';
+    font-size:41px;
+    font-weight:400;
+    
+  }
+  
+  .startButton {
+    color: #FFA100;
+    border: none;
+    padding: 0px;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: 'Jersey10';
+    font-weight: 100;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 12%;
+    background-color: transparent !important;
+
+    overflow: hidden;
+}
+
+.startButton::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    background-color: #FFA100;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+.startButton:hover::after {
+    width: 100%;
+    left: 0; 
+}
+
+.startButton:not(:hover)::after {
+    width: 0%;
+    left: 100%; 
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+  
+  .version {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family:'Jersey10'; 
+ }
+
+.topLeftCards, .bottomRightCards {
+    position: absolute;
+    display: flex;
+    z-index:2;
+
+  }
+  
+  .topLeftCards {
+    top: 0px;
+    left: 0px;
+
+  }
+  
+  .bottomRightCards {
+    bottom: 0px;
+    right: 0px;
+  }
+  
+  .card {
+    width: 200px; 
+    height: auto;
+    margin: 5px;
+    position:absolute;
+  }
+
+  .bottomRightCards #jack {
+    transform:rotate(-33deg);
+    position:absolute;
+    bottom:-100px;
+    right:125px;
+  }
+
+  .bottomRightCards #ace {
+    transform:rotate(-2deg);
+    position:absolute;
+    bottom:-35px;
+    right:0px;
+  } 
+
+  .topLeftCards #ace {
+    transform:rotate(-35deg);
+    position:absolute;
+    top: -100px;
+    left:100px;
+    z-index:3;
+  }
+
+  .topLeftCards #back {
+    transform:rotate(-5deg);
+    position:absolute;
+    top: -50px;
+    left:-50px;
+  }
+
+/* For tablets and smaller screens */
+@media (max-width: 1024px) {
+  .contentWrapper {
+    width: 90vw;
+    height: 85vh;
+    margin: 30px;
+  }
+
+  .logo {
+    width: 350px;
+  }
+
+  .divider {
+    width: 350px;
+  }
+
+  .tagline {
+    font-size: 35px;
+  }
+
+  .startButton {
+    font-size: 25px;
+    bottom: 10%;
+  }
+
+  .version {
+    font-size: 1rem;
+  }
+
+  .card {
+    width:150px;
+  }
+
+}
+
+/* For mobile screens */
+@media (max-width: 768px) {
+  .contentWrapper {
+    width: 95vw;
+    height: 80vh;
+    margin: 20px;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 250px;
+  }
+
+  .divider {
+    width: 250px;
+  }
+
+  .tagline {
+    font-size: 28px;
+    margin: 15px 0;
+  }
+
+  .startButton {
+    font-size: 20px;
+    bottom: 8%;
+  }
+
+  .version {
+    font-size: 0.9rem;
+    top: 10px;
+    right: 10px;
+  }
+
+  .card {
+    width:100px;
+  }
+
+  .bottomRightCards #jack {
+    transform:rotate(-20deg) !important;
+    bottom:-75px !important;
+    right:75px !important;
+  }
+
+  .bottomRightCards #ace {
+    transform:rotate(-2deg);
+    position:absolute;
+    bottom:-35px;
+    right:0px;
+  } 
+
+  .topLeftCards #ace {
+    transform:rotate(-35deg);
+    position:absolute;
+    top: -50px !important;
+    left:50px !important;
+    z-index:3;
+  }
+
+  .topLeftCards #back {
+    transform:rotate(-5deg);
+    position:absolute;
+    top: -50px;
+    left:-10px !important;
+  }
+}
+
+/* For very small screens (e.g., small phones) */
+@media (max-width: 480px) {
+  .contentWrapper {
+    width: 100vw;
+    height: 75vh;
+    margin: 10px;
+  }
+
+  .logo {
+    width: 300px;
+  }
+
+  .divider {
+    width: 200px;
+  }
+
+  .tagline {
+    font-size: 26px;
+    margin: 10px 0;
+  }
+
+  .startButton {
+    font-size: 24px;
+    bottom: 5%;
+    padding-bottom:5px;
+  }
+
+  .version {
+    font-size: 0.8rem;
+  }
+}
