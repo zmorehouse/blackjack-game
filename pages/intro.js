@@ -1,5 +1,3 @@
-
-import '../styles/intro.css'; 
 import { motion } from "framer-motion";
 import { useMediaQuery } from 'react-responsive';
 import Head from "next/head";
