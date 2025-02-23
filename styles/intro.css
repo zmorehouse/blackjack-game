@@ -39,6 +39,10 @@
     align-items:center;
     justify-content:center;
   }
+
+  .contentWrapper.alignedStart {
+    align-items: flex-start;
+}
   
   .logo {
     max-width: 100%;
@@ -77,6 +81,10 @@
     background-color: transparent !important;
 
     overflow: hidden;
+}
+
+.startButton.withMargin {
+  margin-left: 50px;
 }
 
 .startButton::after {
@@ -164,6 +172,40 @@
     top: -50px;
     left:-50px;
   }
+.newParagraph {
+  margin-left:50px;
+  width:60%;
+}
+.newParagraph span {
+  font-size:60px !important;
+  text-align:left;
+  font-family:'Jersey10'; 
+  font-weight:400 !important;
+}
+
+
+.slidingDivs {
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  gap:0px;
+  justify-content: space-between;
+  z-index: 11 !important; 
+}
+
+.slideIn {
+  width: 33.33vw; 
+  height: 102vh; 
+  background-color: #FFA100; 
+  position: relative; 
+  z-index: 11 !important; 
+  transition:delay(0);
+}
+
+
 
 /* For tablets and smaller screens */
 @media (max-width: 1024px) {
