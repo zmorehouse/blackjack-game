@@ -205,7 +205,80 @@
   transition:delay(0);
 }
 
+.slideIn:hover {
+  cursor:pointer;
 
+}
+
+.slideIn.bg-red { background-color: #4C1110;  }
+.slideIn.bg-red .slidercontainer {
+  border-color:#821614;
+}
+
+.slideIn.bg-green { background-color: #1E3719; }
+.slideIn.bg-green .slidercontainer {
+  border-color:#446E3B;
+}
+.slideIn.bg-blue { background-color: #1A1E4D;  }
+.slideIn.bg-blue .slidercontainer {
+  border-color:#272C70;
+}
+
+.slideIn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/images/halftone.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7; 
+  mix-blend-mode: color-burn; 
+}
+
+.slideIn .description {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.slideIn .title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    display: inline-block;
+    writing-mode:sideways-lr;
+    width:10%;
+    display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.slideIn .slidercontainer {
+  padding:30px;
+  margin:30px;
+  border-style:solid;
+  border-width:6px;
+  height:93vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.notEveryone span {
+  font-size:30px !important;
+  margin-bottom:15px;
+}
+
+.comingsoon p{
+  text-transform:uppercase;
+  font-family:'Jersey10' !important;
+  font-weight:500;
+  font-size:28px;
+  margin-bottom:10px;
+}
 
 /* For tablets and smaller screens */
 @media (max-width: 1024px) {

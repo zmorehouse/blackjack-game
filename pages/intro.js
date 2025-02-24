@@ -22,7 +22,7 @@ const Intro = () => {
     const [showDivs, setShowDivs] = useState(false);
 
     const slideInAnimation = {
-        hidden: { y: "100vh" }, 
+        hidden: { y: "100vh" },
         visible: {
             y: 0,
 
@@ -34,12 +34,12 @@ const Intro = () => {
     };
 
     const slideInAnimation2 = {
-        hidden: { y: "100vh" }, 
+        hidden: { y: "100vh" },
         visible: {
             y: 0,
 
             transition: {
-                delay:0.2,
+                delay: 0.2,
                 duration: 0.75,
                 ease: "easeInOut"
             }
@@ -48,12 +48,12 @@ const Intro = () => {
 
 
     const slideInAnimation3 = {
-        hidden: { y: "100vh" }, 
+        hidden: { y: "100vh" },
         visible: {
             y: 0,
 
             transition: {
-                delay:0.4,
+                delay: 0.4,
                 duration: 0.75,
                 ease: "easeInOut"
             }
@@ -220,7 +220,6 @@ const Intro = () => {
                             </p>
                         </motion.div>
                     )}
-
                     {/* Second Text Paragraph (Appears after second click) */}
                     {secondTextVisible && !thirdTextVisible && (
                         <motion.div
@@ -230,34 +229,60 @@ const Intro = () => {
                             variants={{ visible: { transition: { staggerChildren: 0.03 } } }}
                             style={{ textAlign: 'left', fontSize: '50px' }}
                         >
-                            <p>
-                                {"But, not everyone plays perfectly. Dealers Dilemma is designed to help you master basic blackjack strategy."
+                            <p className="notEveryone">
+                                {"But not everyone plays perfectly."
                                     .split("").map((char, index) => (
                                         <motion.span key={index} variants={characterAnimation}>{char}</motion.span>
+                                    ))}
+                            </p>
+
+                            <p>
+                                {"Dealers Dilemma is designed to help you master "
+                                    .split("").map((char, index) => (
+                                        <motion.span key={index} variants={characterAnimation}>{char}</motion.span>
+                                    ))}
+                                {"basic blackjack strategy."
+                                    .split("").map((char, index) => (
+                                        <motion.span key={index} variants={characterAnimation} style={{ color: '#FFA100' }}>
+                                            {char}
+                                        </motion.span>
                                     ))}
                             </p>
                         </motion.div>
                     )}
 
-                    {/* Third Text Paragraph (Appears after third click) */}
-            {thirdTextVisible && (
-                <motion.div
-                    className="newParagraph"
-                    initial="hidden"
-                    animate="visible"
-                    variants={{ visible: { transition: { staggerChildren: 0.03 } } }}
-                    style={{ textAlign: 'center', fontSize: '50px' }}
-                >
-                    <p>
-                        {"Because, let's face it, the casino’s have too much f******* money."
-                            .split("").map((char, index) => (
-                                <motion.span key={index} variants={characterAnimation}>{char}</motion.span>
-                            ))}
-                    </p>
-                </motion.div>
-            )}
 
-          
+                    {/* Third Text Paragraph (Appears after third click) */}
+                    {thirdTextVisible && (
+                        <motion.div
+                            className="newParagraph"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{ visible: { transition: { staggerChildren: 0.03 } } }}
+                            style={{ textAlign: 'center', fontSize: '50px' }}
+                        >
+                            <p>
+                                {"Because, let's face it, the casino’s have too much " 
+                                    .split("").map((char, index) => (
+                                        <motion.span key={index} variants={characterAnimation}>{char}</motion.span>
+                                    ))}
+                            
+                            {"f******"
+                                    .split("").map((char, index) => (
+                                        <motion.span key={index} variants={characterAnimation} style={{ color: '#FF0400' }}>
+                                            {char}
+                                        </motion.span>
+                                    ))}
+                                                                   {" money."
+                                    .split("").map((char, index) => (
+                                        <motion.span key={index} variants={characterAnimation}>{char}</motion.span>
+                                    ))}
+                            
+                            </p>
+                        </motion.div>
+                    )}
+
+
 
                     {/* Continue Button */}
                     {!thirdTextVisible && (
@@ -350,32 +375,63 @@ const Intro = () => {
                     />
                 </motion.div>
             </div>
-          {/* Divs that will slide up */}
-{showDivs && (
-    <div className="slidingDivs">
-        <motion.div
-            className="slideIn"
-            initial="hidden"
-            animate="visible"
-            variants={slideInAnimation}
-            transition={{ delay: 0 }} 
-        />
-        <motion.div
-            className="slideIn"
-            initial="hidden"
-            animate="visible"
-            variants={slideInAnimation2}
-            transition={{ delay: 1 }}
-        />
-        <motion.div
-            className="slideIn"
-            initial="hidden"
-            animate="visible"
-            variants={slideInAnimation3}
-            transition={{ delay: 0.5 }} 
-        />
-    </div>
-)}
+            {showDivs && (
+                <div className="slidingDivs">
+                    <motion.div
+                        className="slideIn bg-red"
+                        initial="hidden"
+                        animate="visible"
+                        variants={slideInAnimation}
+                        transition={{ delay: 0 }}
+                    >
+                        <div className="slidercontainer">
+                            <div>
+                            <div className="comingsoon"> <p> Coming Soon </p></div>
+                            <div className="description"><p>Master the rules and strategies of Blackjack.
+                                
+                            </p></div>
+                            </div>
+                            <div className="title"><h2>How To Play Blackjack
+                            </h2></div>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        className="slideIn bg-green"
+                        initial="hidden"
+                        animate="visible"
+                        variants={slideInAnimation2}
+                        transition={{ delay: 1 }}
+                    >
+                        <div className="slidercontainer">
+
+                            <div className="description"><p>Sharpen your skills with interactive hands-on practice.
+                            </p></div>
+                            <div className="title"><h2>Practice Tool</h2></div>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        className="slideIn bg-blue"
+                        initial="hidden"
+                        animate="visible"
+                        variants={slideInAnimation3}
+                        transition={{ delay: 0.5 }}
+                    >
+                        <div className="slidercontainer">
+                        <div>
+                            <div className="comingsoon"> <p> Coming Soon </p></div>
+                            <div className="description"><p>Master the rules and strategies of Blackjack.
+                                
+                            </p></div>
+                            </div>
+                            <div className="title"><h2>Learn Optimal Strategy
+                            </h2></div>
+                        </div>
+
+                    </motion.div>
+                </div>
+            )}
 
         </>
     );
