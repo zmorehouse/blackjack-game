@@ -1,4 +1,6 @@
-
+html {
+  overflow-y:hidden !important;
+}
 
 .pageContainer {
     display: flex;
@@ -243,17 +245,19 @@
     opacity: 0.8;
 }
 
-.slideIn .title {
-    font-size: 18px;
+.slideIn .title h2 {
+    font-size: 46px;
     font-weight: bold;
-    text-align: right;
-    display: inline-block;
-    writing-mode:sideways-lr;
-    width:10%;
+    text-align: left;
+font-family:'Jersey10' !important;
+letter-spacing: 0px;
     display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+
   width: 100%;
+}
+
+.slideIn {
+  transition: width 0.5s ease; 
 }
 
 .slideIn .slidercontainer {
@@ -266,10 +270,39 @@
   flex-direction:column;
   justify-content:space-between;
 }
+.slideIn .title {
+  position: relative;
+  display: inline-block;
+}
+
+.slideIn .title h2 {
+  position: relative;
+  display: inline-block;
+  width:auto;
+}
+
+.slideIn .title h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background-color: currentColor;
+  transition: width 0.4s ease;
+}
+
+.slideIn:hover .title h2::after {
+  width: 100%;
+}
+
+.slideIn:hover {
+  width:37vw;
+}
 
 .notEveryone span {
-  font-size:30px !important;
-  margin-bottom:15px;
+  font-size:44px !important;
+  margin-bottom:40px !important;
 }
 
 .comingsoon p{
