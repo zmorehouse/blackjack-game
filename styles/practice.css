@@ -1,0 +1,220 @@
+.blackjackPageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    padding: 50px;
+    background-color: #1e3719;
+  }
+
+  .blackjackPageContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("/images/halftone.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.7;
+    mix-blend-mode: color-burn;
+  }
+
+  .blackjackBoard {
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding-bottom:100px;
+    width:100%;
+    border: 6px solid #294324;
+    
+  }
+
+    .blackjackLogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+  }
+  
+  .dealerHand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    width:100%;
+  }
+
+  .dealerInner {
+    display:flex;
+    flex-direction:row;
+  }
+  
+  .dealerTotal {
+    margin-top: 10px;
+  }
+  
+  .dealerCards {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .card {
+    margin-right: 10px;
+  }
+  
+  .statsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 50px;
+    text-align: center;
+  }
+  
+  .correctStats {
+    margin-bottom: 20px;
+  }
+  
+  .latestHands {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .handStats {
+    margin-right: 10px;
+    border: 1px solid black;
+    padding: 5px;
+  }
+  
+  .winPercentage {
+    margin-bottom: 20px;
+  }
+  
+  .playerHandsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 50px;
+    width:100%;
+  }
+  
+
+  .playerHand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    width:100%;
+  }
+
+  .playerInner {
+    display:flex;
+    flex-direction:row;
+  }
+  
+  .playerTotal {
+    margin-top: 10px;
+  }
+  
+  .playerCards {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .card {
+    margin-right: 10px;
+  }
+
+  .actionButtons {
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    width: 80%;
+    margin-top: auto;
+    margin-bottom: 20px;
+    bottom:25px;
+  }
+  
+  .actionButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Right Side Tabs */
+.sideTabs {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transform: translateY(-50%);
+  }
+  
+  .sideTab {
+    writing-mode: vertical-rl;
+    text-transform: uppercase;
+    margin: 10px 0;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sideTab:hover {
+    background-color: #444;
+  }
+  
+  .sideTab.active {
+    background-color: #ffa100;
+  }
+  
+  /* Tab Pane Styling */
+  .sideWindowPane {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Initially off-screen */
+    width: 300px;
+    height: 100vh; /* Full height */
+    background-color: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px 0 0 10px; /* Rounded left side */
+    box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: right 0.3s ease-in-out; /* Smooth transition for sliding in/out */
+  }
+  
+  /* Make the pane slide in when active */
+  .sideWindowPane.active {
+    right: 0; /* Pane is fully visible */
+  }
+  
+  .sideWindowPane h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .sideWindowPane .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+  }
+  
+  .sideWindowPane .closeButton:hover {
+    color: #333;
+  }
+  

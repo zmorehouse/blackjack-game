@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 const text = "Learn Optimal Blackjack Strategy";
 
-const Intro = () => {
+const Home = () => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const [startClicked, setStartClicked] = useState(false);
     const [secondTextVisible, setSecondTextVisible] = useState(false);
@@ -397,7 +397,7 @@ const Intro = () => {
                         </div>
                     </motion.div>
 
-<Link href="/practice" passHref>
+<Link href="/practiceold" passHref>
     <motion.div
         className="slideIn bg-green cursor-pointer"
         initial="hidden"
@@ -438,4 +438,4 @@ const Intro = () => {
     );
 };
 
-export default Intro;
+export default Home;
