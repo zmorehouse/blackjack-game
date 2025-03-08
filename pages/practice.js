@@ -116,12 +116,12 @@ const Practice = () => {
   const startGame = () => {
     let newDeck = shuffleDeck(createDeck());
 
-    let playerInitialHand = [newDeck.pop(), newDeck.pop()];
-    /* let fixedValue = "A"; 
+    // let playerInitialHand = [newDeck.pop(), newDeck.pop()];
+     let fixedValue = "A"; 
     let playerInitialHand = [
       { suit: suits[0], value: fixedValue },
       { suit: suits[1], value: fixedValue }
-    ]; */
+    ]; 
     let dealerInitialHand = [newDeck.pop(), newDeck.pop()];
 
     animatedPlayerCards.current.clear();
@@ -647,7 +647,9 @@ const Practice = () => {
 <div className="playerHandsContainer">
  
     <h2>You</h2>
+          <div className="playerHandsInner">
 
+       
       {playerHands.map((hand, index) => {
         let handResult = "";
         let suggestedMove = "";
@@ -711,7 +713,7 @@ const Practice = () => {
         );
       })}
 
-
+</div>
 </div>
 
 {/* Action Buttons at the Bottom */}

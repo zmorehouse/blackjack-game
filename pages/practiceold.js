@@ -101,6 +101,272 @@ export default function Home() {
   const animatedDealerCards = useRef(new Set());
   const [flipCompleted, setFlipCompleted] = useState(false);
 
+
+
+ 
+
+  // Animations for dealer and player hands
+ 
+
+  useLayoutEffect(() => {
+ 
+
+    playerHands.forEach((hand, handIndex) => {
+ 
+
+      hand.forEach((_, cardIndex) => {
+ 
+
+        const cardKey = `${handIndex}-${cardIndex}`;
+ 
+
+        const cardRef = playerCardRefs.current[handIndex][cardIndex];
+ 
+
+
+ 
+
+        if (cardRef && !animatedPlayerCards.current.has(cardKey)) {
+ 
+
+          animatedPlayerCards.current.add(cardKey);
+ 
+
+          gsap.set(cardRef, { opacity: 0, y: 30, scale: 0.8 });
+ 
+
+          gsap.to(cardRef, {
+ 
+
+            opacity: 1,
+ 
+
+            y: 0,
+ 
+
+            scale: 1,
+ 
+
+            duration: 0.5,
+ 
+
+            ease: "power2.out",
+ 
+
+          });
+ 
+
+        }
+ 
+
+      });
+ 
+
+    });
+ 
+
+  }, [playerHands]);
+ 
+
+
+ 
+
+  useLayoutEffect(() => {
+ 
+
+    dealerHand.forEach((_, index) => {
+ 
+
+      const cardRef = dealerCardRefs.current[index];
+ 
+
+  
+ 
+
+      if (cardRef && !animatedDealerCards.current.has(index)) {
+ 
+
+        animatedDealerCards.current.add(index);
+ 
+
+  
+ 
+
+        gsap.set(cardRef, { opacity: 0, y: -30, scale: 0.8 });
+ 
+
+  
+ 
+
+        gsap.to(cardRef, {
+ 
+
+          opacity: 1,
+ 
+
+          y: 0,
+ 
+
+          scale: 1,
+ 
+
+          duration: 0.5,
+ 
+
+          ease: "power2.out",
+ 
+
+          delay: index * 0.2, 
+ 
+
+        });
+ 
+
+      }
+ 
+
+    });
+ 
+
+  }, [dealerHand]);
+ 
+
+  
+ 
+
+  useLayoutEffect(() => {
+ 
+
+    if (revealDealer) {
+ 
+
+      const hiddenCard = dealerCardRefs.current[1];
+ 
+
+      hiddenCard.src = "/cards/back.png";
+ 
+
+  
+ 
+
+      gsap.to(hiddenCard, {
+ 
+
+        rotationY: 90,
+ 
+
+        duration: 0.3,
+ 
+
+        ease: "power2.in",
+ 
+
+        onComplete: () => {
+ 
+
+          hiddenCard.src = `/cards/${dealerHand[1].value}${getSuitLetter(dealerHand[1].suit)}.png`;
+ 
+
+  
+ 
+
+          gsap.to(hiddenCard, {
+ 
+
+            rotationY: 0,
+ 
+
+            duration: 0.3,
+ 
+
+            ease: "power2.out",
+ 
+
+            onComplete: () => {
+ 
+
+              setFlipCompleted(true);
+ 
+
+  
+ 
+
+              dealerHand.forEach((_, index) => {
+ 
+
+                const cardRef = dealerCardRefs.current[index];
+ 
+
+  
+ 
+
+                if (cardRef && !animatedDealerCards.current.has(index)) {
+ 
+
+                  animatedDealerCards.current.add(index);
+ 
+
+  
+ 
+
+                  gsap.set(cardRef, { opacity: 0, y: -30, scale: 0.8 });
+ 
+
+  
+ 
+
+                  gsap.to(cardRef, {
+ 
+
+                    opacity: 1,
+ 
+
+                    y: 0,
+ 
+
+                    scale: 1,
+ 
+
+                    duration: 0.4,
+ 
+
+                    ease: "power2.out",
+ 
+
+                    delay: index * 0.2, 
+ 
+
+                  });
+ 
+
+                }
+ 
+
+              });
+ 
+
+            },
+ 
+
+          });
+ 
+
+        },
+ 
+
+      });
+ 
+
+    }
+ 
+
+  }, [revealDealer]);
+ 
+
+  
+ 
+
+
   // Function to start the game / replay the game
   const startGame = () => {
     let newDeck = shuffleDeck(createDeck());
