@@ -173,10 +173,10 @@ html {
 }
 .newParagraph {
   margin-left: 50px;
-  width: 60%;
+  width: 75%;
 }
 .newParagraph span {
-  font-size: 60px;
+  font-size: 62px;
   text-align: left;
   font-family: "Jersey10";
   font-weight: 400;
@@ -346,6 +346,11 @@ html {
   .card {
     width: 150px;
   }
+
+  .slideIn .title h2 {
+    font-size:34px;
+    font-weight:100;
+  }
 }
 
 /* For mobile screens */
@@ -393,13 +398,13 @@ html {
 
   .startButton {
     font-size: 24px;
-    bottom: 8%;
-
+    bottom: 12%;
     margin-left: auto !important;
     margin-right: auto;
     left: 0;
     right: 0;
     text-align: center;
+    width:100px;
   }
 
   .version {
@@ -456,6 +461,7 @@ html {
     padding-bottom:15px;
     margin:0px;
     align-items: center;
+    justify-content: end;
     
   }
 
@@ -465,7 +471,12 @@ html {
     font-weight:100;
   }
 
-  .slideIn .description p, .slideIn .comingsoon p {
+  .slideIn .comingsoon p {
+    font-size:20px;
+    margin:0px;
+  }
+
+  .slideIn .description p {
     display:none !important;
   }
 
@@ -479,7 +490,4 @@ html {
     display: none;
   }
 
-
-
-  
 }

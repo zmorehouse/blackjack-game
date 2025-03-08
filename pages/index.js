@@ -260,7 +260,7 @@ const Intro = () => {
                             initial="hidden"
                             animate="visible"
                             variants={{ visible: { transition: { staggerChildren: 0.03 } } }}
-                            style={{ textAlign: 'center', fontSize: '50px' }}
+                            style={{ textAlign: 'center', marginLeft: '0px'}}
                         >
                             <p>
                                 {"Because, let's face it, the casino’s have too much " 
