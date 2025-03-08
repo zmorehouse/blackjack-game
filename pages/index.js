@@ -187,7 +187,7 @@ const Intro = () => {
                                 className="tagline"
                                 initial="hidden"
                                 animate="visible"
-                                variants={{ visible: { transition: { staggerChildren: 0.05 } } }} // Optional stagger timing
+                                variants={{ visible: { transition: { staggerChildren: 0.05 } } }} 
                             >
                                 {text.split("").map((char, index) => (
                                     <motion.span key={index} variants={characterAnimation}>

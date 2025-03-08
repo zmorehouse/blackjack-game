@@ -350,8 +350,9 @@ html {
 
 /* For mobile screens */
 @media (max-width: 768px) {
-  .pageContainer::before {
+  .pageContainer::before, .slideIn::before  {
     opacity:0.2;
+    mix-blend-mode:normal;
   }
   .newParagraph span,
   .notEveryone span {
@@ -467,10 +468,18 @@ html {
   .slideIn .description p, .slideIn .comingsoon p {
     display:none !important;
   }
+
+  .slideIn:hover {
+    width: 100vw;
+  }
 }
 
 @media (hover: none) {
   .startButton::after {
     display: none;
   }
+
+
+
+  
 }
