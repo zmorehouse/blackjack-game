@@ -350,6 +350,9 @@ html {
 
 /* For mobile screens */
 @media (max-width: 768px) {
+  .pageContainer::before {
+    opacity:0.2;
+  }
   .newParagraph span,
   .notEveryone span {
     font-size: 32px;
@@ -463,5 +466,11 @@ html {
 
   .slideIn .description p, .slideIn .comingsoon p {
     display:none !important;
+  }
+}
+
+@media (hover: none) {
+  .startButton::after {
+    display: none;
   }
 }
