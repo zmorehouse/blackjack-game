@@ -1,88 +1,87 @@
 html {
-  overflow-y:hidden !important;
+  overflow-y: hidden !important;
 }
 
 .pageContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #1E3719;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    overflow-y: hidden !important;
-  }
-  
-  .pageContainer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url("/images/halftone.png");
-    background-size: cover;
-    background-position: center;
-    opacity: 0.7; 
-    mix-blend-mode: color-burn; 
-  }
-  
-  .contentWrapper {
-    border: 6px solid #294324;
-    margin: 50px; 
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    width: 100vw;
-    height: 90vh;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-  }
-
-  .contentWrapper.alignedStart {
-    align-items: flex-start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #1e3719;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow-y: hidden !important;
 }
-  
-  .logo {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 20px;
-    width:500px;
-  }
-  
-  .divider {
-    background-color: #294324;
-    height: 4px;
-    width:475px;
-  }
-  
-  .tagline {
-    font-size: 1.5rem;
-    color: white;
-    margin: 20px 0;
-    font-family:'Jersey10';
-    font-size:41px;
-    font-weight:400;
-    
-  }
-  
-  .startButton {
-    color: #FFA100;
-    border: none;
-    padding: 0px;
-    font-size: 30px;
-    cursor: pointer;
-    font-family: 'Jersey10';
-    font-weight: 100;
-    text-transform: uppercase;
-    position: absolute;
-    bottom: 12%;
-    background-color: transparent !important;
 
-    overflow: hidden;
+.pageContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("/images/halftone.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.7;
+  mix-blend-mode: color-burn;
+}
+
+.contentWrapper {
+  border: 6px solid #294324;
+  margin: 50px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentWrapper.alignedStart {
+  align-items: flex-start;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  width: 500px;
+}
+
+.divider {
+  background-color: #294324;
+  height: 4px;
+  width: 475px;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  color: white;
+  margin: 20px 0;
+  font-family: "Jersey10";
+  font-size: 41px;
+  font-weight: 400;
+}
+
+.startButton {
+  color: #ffa100;
+  border: none;
+  padding: 0px;
+  font-size: 30px;
+  cursor: pointer;
+  font-family: "Jersey10";
+  font-weight: 100;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 12%;
+  background-color: transparent !important;
+
+  overflow: hidden;
 }
 
 .startButton.withMargin {
@@ -90,140 +89,142 @@ html {
 }
 
 .startButton::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 3px;
-    background-color: #FFA100;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 3px;
+  background-color: #ffa100;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
 .startButton:hover::after {
-    width: 100%;
-    left: 0; 
+  width: 100%;
+  left: 0;
 }
 
 .startButton:not(:hover)::after {
-    width: 0%;
-    left: 100%; 
-    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+  width: 0%;
+  left: 100%;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
-  
-  .version {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    color: #fff;
-    font-size: 1.2rem;
-    font-family:'Jersey10'; 
- }
+.version {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  font-size: 1.2rem;
+  font-family: "Jersey10";
+}
 
-.topLeftCards, .bottomRightCards {
-    position: absolute;
-    display: flex;
-    z-index:2;
+.topLeftCards,
+.bottomRightCards {
+  position: absolute;
+  display: flex;
+  z-index: 2;
+}
 
-  }
-  
-  .topLeftCards {
-    top: 0px;
-    left: 0px;
+.topLeftCards {
+  top: 0px;
+  left: 0px;
+}
 
-  }
-  
-  .bottomRightCards {
-    bottom: 0px;
-    right: 0px;
-  }
-  
-  .card {
-    width: 200px; 
-    height: auto;
-    margin: 5px;
-    position:absolute;
-  }
+.bottomRightCards {
+  bottom: 0px;
+  right: 0px;
+}
 
-  .bottomRightCards #jack {
-    transform:rotate(-33deg);
-    position:absolute;
-    bottom:-100px;
-    right:125px;
-  }
+.card {
+  width: 200px;
+  height: auto;
+  margin: 5px;
+  position: absolute;
+}
 
-  .bottomRightCards #ace {
-    transform:rotate(-2deg);
-    position:absolute;
-    bottom:-35px;
-    right:0px;
-  } 
+.bottomRightCards #jack {
+  transform: rotate(-33deg);
+  position: absolute;
+  bottom: -100px;
+  right: 125px;
+}
 
-  .topLeftCards #ace {
-    transform:rotate(-35deg);
-    position:absolute;
-    top: -100px;
-    left:100px;
-    z-index:3;
-  }
+.bottomRightCards #ace {
+  transform: rotate(-2deg);
+  position: absolute;
+  bottom: -35px;
+  right: 0px;
+}
 
-  .topLeftCards #back {
-    transform:rotate(-5deg);
-    position:absolute;
-    top: -50px;
-    left:-50px;
-  }
+.topLeftCards #ace {
+  transform: rotate(-35deg);
+  position: absolute;
+  top: -100px;
+  left: 100px;
+  z-index: 3;
+}
+
+.topLeftCards #back {
+  transform: rotate(-5deg);
+  position: absolute;
+  top: -50px;
+  left: -50px;
+}
 .newParagraph {
-  margin-left:50px;
-  width:60%;
+  margin-left: 50px;
+  width: 60%;
 }
 .newParagraph span {
-  font-size:60px !important;
-  text-align:left;
-  font-family:'Jersey10'; 
-  font-weight:400 !important;
+  font-size: 60px;
+  text-align: left;
+  font-family: "Jersey10";
+  font-weight: 400;
 }
 
-
 .slidingDivs {
-  position: absolute; 
-  top: 0; 
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   display: flex;
-  gap:0px;
+  gap: 0px;
   justify-content: space-between;
-  z-index: 11 !important; 
+  z-index: 11 !important;
 }
 
 .slideIn {
-  width: 33.33vw; 
-  height: 102vh; 
-  background-color: #FFA100; 
-  position: relative; 
-  z-index: 11 !important; 
-  transition:delay(0);
+  width: 33.33vw;
+  height: 102vh;
+  background-color: #ffa100;
+  position: relative;
+  z-index: 11 !important;
+  transition: delay(0);
 }
 
 .slideIn:hover {
-  cursor:pointer;
-
+  cursor: pointer;
 }
 
-.slideIn.bg-red { background-color: #4C1110;  }
+.slideIn.bg-red {
+  background-color: #4c1110;
+}
 .slideIn.bg-red .slidercontainer {
-  border-color:#821614;
+  border-color: #821614;
 }
 
-.slideIn.bg-green { background-color: #1E3719; }
-.slideIn.bg-green .slidercontainer {
-  border-color:#446E3B;
+.slideIn.bg-green {
+  background-color: #1e3719;
 }
-.slideIn.bg-blue { background-color: #1A1E4D;  }
+.slideIn.bg-green .slidercontainer {
+  border-color: #446e3b;
+}
+.slideIn.bg-blue {
+  background-color: #1a1e4d;
+}
 .slideIn.bg-blue .slidercontainer {
-  border-color:#272C70;
+  border-color: #272c70;
 }
 
 .slideIn::before {
@@ -236,39 +237,39 @@ html {
   background-image: url("/images/halftone.png");
   background-size: cover;
   background-position: center;
-  opacity: 0.7; 
-  mix-blend-mode: color-burn; 
+  opacity: 0.7;
+  mix-blend-mode: color-burn;
 }
 
 .slideIn .description {
-    font-size: 18px;
-    opacity: 0.8;
+  font-size: 18px;
+  opacity: 0.8;
 }
 
 .slideIn .title h2 {
-    font-size: 46px;
-    font-weight: bold;
-    text-align: left;
-font-family:'Jersey10' !important;
-letter-spacing: 0px;
-    display: flex;
+  font-size: 46px;
+  font-weight: bold;
+  text-align: left;
+  font-family: "Jersey10" !important;
+  letter-spacing: 0px;
+  display: flex;
 
   width: 100%;
 }
 
 .slideIn {
-  transition: width 0.5s ease; 
+  transition: width 0.5s ease;
 }
 
 .slideIn .slidercontainer {
-  padding:30px;
-  margin:30px;
-  border-style:solid;
-  border-width:6px;
-  height:93vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
+  padding: 30px;
+  margin: 30px;
+  border-style: solid;
+  border-width: 6px;
+  height: 93vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .slideIn .title {
   position: relative;
@@ -278,7 +279,7 @@ letter-spacing: 0px;
 .slideIn .title h2 {
   position: relative;
   display: inline-block;
-  width:auto;
+  width: auto;
 }
 
 .slideIn .title h2::after {
@@ -297,20 +298,20 @@ letter-spacing: 0px;
 }
 
 .slideIn:hover {
-  width:37vw;
+  width: 37vw;
 }
 
 .notEveryone span {
-  font-size:44px !important;
-  margin-bottom:40px !important;
+  font-size: 44px;
+  margin-bottom: 40px !important;
 }
 
-.comingsoon p{
-  text-transform:uppercase;
-  font-family:'Jersey10' !important;
-  font-weight:500;
-  font-size:28px;
-  margin-bottom:10px;
+.comingsoon p {
+  text-transform: uppercase;
+  font-family: "Jersey10" !important;
+  font-weight: 500;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
 
 /* For tablets and smaller screens */
@@ -343,13 +344,29 @@ letter-spacing: 0px;
   }
 
   .card {
-    width:150px;
+    width: 150px;
   }
-
 }
 
 /* For mobile screens */
 @media (max-width: 768px) {
+  .newParagraph span,
+  .notEveryone span {
+    font-size: 32px;
+  }
+
+  .notEveryone {
+    margin-bottom: 15px;
+  }
+
+  .newParagraph {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0px;
+    text-align: center !important;
+  }
+
   .contentWrapper {
     width: 95vw;
     height: 80vh;
@@ -358,21 +375,27 @@ letter-spacing: 0px;
   }
 
   .logo {
-    width: 250px;
+    width: 300px;
   }
 
   .divider {
-    width: 250px;
+    width: 275px !important;
   }
 
   .tagline {
-    font-size: 28px;
-    margin: 15px 0;
+    font-size: 24px;
+    margin: 20px 0;
   }
 
   .startButton {
-    font-size: 20px;
+    font-size: 24px;
     bottom: 8%;
+
+    margin-left: auto !important;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
   }
 
   .version {
@@ -382,66 +405,63 @@ letter-spacing: 0px;
   }
 
   .card {
-    width:100px;
+    width: 100px;
   }
 
   .bottomRightCards #jack {
-    transform:rotate(-20deg) !important;
-    bottom:-75px !important;
-    right:75px !important;
+    transform: rotate(-20deg) !important;
+    bottom: -75px !important;
+    right: 75px !important;
   }
 
   .bottomRightCards #ace {
-    transform:rotate(-2deg);
-    position:absolute;
-    bottom:-35px;
-    right:0px;
-  } 
+    transform: rotate(-2deg);
+    position: absolute;
+    bottom: -35px;
+    right: 0px;
+  }
 
   .topLeftCards #ace {
-    transform:rotate(-35deg);
-    position:absolute;
+    transform: rotate(-35deg);
+    position: absolute;
     top: -50px !important;
-    left:50px !important;
-    z-index:3;
+    left: 50px !important;
+    z-index: 3;
   }
 
   .topLeftCards #back {
-    transform:rotate(-5deg);
-    position:absolute;
+    transform: rotate(-5deg);
+    position: absolute;
     top: -50px;
-    left:-10px !important;
-  }
-}
-
-/* For very small screens (e.g., small phones) */
-@media (max-width: 480px) {
-  .contentWrapper {
-    width: 100vw;
-    height: 75vh;
-    margin: 10px;
+    left: -10px !important;
   }
 
-  .logo {
-    width: 300px;
+  .slidingDivs {
+    flex-direction: column;
   }
 
-  .divider {
-    width: 200px;
+  .slideIn {
+    width:100vw;
+    height:33.3vh;
   }
 
-  .tagline {
-    font-size: 26px;
-    margin: 10px 0;
+  .slideIn .slidercontainer {
+    height:100%;
+    border-style:none;
+    padding:15px;
+    padding-bottom:15px;
+    margin:0px;
+    align-items: center;
+    
   }
 
-  .startButton {
-    font-size: 24px;
-    bottom: 5%;
-    padding-bottom:5px;
+  .slideIn .title h2 {
+    text-align:center;
+    font-size:30px;
+    font-weight:100;
   }
 
-  .version {
-    font-size: 0.8rem;
+  .slideIn .description p, .slideIn .comingsoon p {
+    display:none !important;
   }
 }
