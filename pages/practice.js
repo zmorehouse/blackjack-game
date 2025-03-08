@@ -2,9 +2,11 @@ import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
-
 import Link from "next/link";
 import React, { useState, useRef, useEffect } from "react";
+
+import DealerHand from "../components/dealerhand.js";
+import PlayerHands from "../components/playerhands.js";
 
 const suits = ["\u2660", "\u2665", "\u2666", "\u2663"];
 const values = [
@@ -117,11 +119,11 @@ const Practice = () => {
     let newDeck = shuffleDeck(createDeck());
 
     // let playerInitialHand = [newDeck.pop(), newDeck.pop()];
-     let fixedValue = "A"; 
+    let fixedValue = "A";
     let playerInitialHand = [
       { suit: suits[0], value: fixedValue },
       { suit: suits[1], value: fixedValue }
-    ]; 
+    ];
     let dealerInitialHand = [newDeck.pop(), newDeck.pop()];
 
     animatedPlayerCards.current.clear();
@@ -169,8 +171,8 @@ const Practice = () => {
     let dealerNumericValue = ["J", "Q", "K", "10"].includes(dealerValue)
       ? 10
       : dealerValue === "A"
-      ? 11
-      : parseInt(dealerValue);
+        ? 11
+        : parseInt(dealerValue);
     const canDouble = hand.length === 2;
 
     // Return optimal move for pairs
@@ -222,8 +224,8 @@ const Practice = () => {
           canDouble && dealerNumericValue >= 2 && dealerNumericValue <= 6
             ? "D"
             : dealerNumericValue >= 7 && dealerNumericValue <= 8
-            ? "S"
-            : "H",
+              ? "S"
+              : "H",
         19: canDouble && dealerNumericValue === 6 ? "D" : "S",
         20: "S",
         21: "S",
@@ -579,51 +581,16 @@ const Practice = () => {
 
         <div className="blackjackBoard">
           {/* Dealer's Hand Section */}
-          <div className="dealerHand">
-            <h2>Dealer</h2>
-            <div className="dealerInner">
-              <p className="dealerTotal">
-              {playerHands.length > 0 && (
-                  <p className={styles.dealerScore}>
-                    {" "}
-                    {revealDealer
-                      ? calculateHandValue(dealerHand)
-                      : calculateHandValue([dealerHand[0]])}
-                  </p>
-                )}
-              </p>
 
+          <DealerHand
+            dealerHand={dealerHand}
+            revealDealer={revealDealer}
+            dealerCardRefs={dealerCardRefs}
+            playerHands={playerHands}
+            calculateHandValue={calculateHandValue}
+            getSuitLetter={getSuitLetter}
+          />
 
-              <div className="dealerCards">
-
-                <div className={styles.cards}>
-                  {dealerHand.map((card, index) => (
-                    <div key={index} className="cardContainer">
-                      <img
-                        ref={(el) => (dealerCardRefs.current[index] = el)}
-                        src={
-                          index === 1 && !revealDealer
-                            ? `/cards/back.png`
-                            : `/cards/${card.value}${getSuitLetter(
-                                card.suit
-                              )}.png`
-                        }
-                        alt={
-                          index === 1 && !revealDealer
-                            ? "Hidden Card"
-                            : `${card.value} of ${card.suit}`
-                        }
-                        className={`${styles.cardImage} ${
-                          index === 1 && !revealDealer ? styles.hiddenCard : ""
-                        }`}
-                      />
-                    </div>
-                  ))}
-                </div>
-
-              </div>
-            </div>
-          </div>
 
           {/* Centered Stats Section */}
           <div className="statsContainer">
@@ -643,124 +610,65 @@ const Practice = () => {
             </div>
           </div>
 
-{/* Player Hands Section */}
-<div className="playerHandsContainer">
- 
-    <h2>You</h2>
-          <div className="playerHandsInner">
+          {/* Player Hands Section */}
+          <PlayerHands
+            playerHands={playerHands}
+            currentHandIndex={currentHandIndex}
+            playerTurn={playerTurn}
+            calculateHandValue={calculateHandValue}
+            getSuitLetter={getSuitLetter}
+            gameOver={gameOver}
+            dealerHand={dealerHand}
+            getOptimalMove={getOptimalMove}
+            playerCardRefs={playerCardRefs}
+            showOptimalMove={showOptimalMove}
+          />
 
-       
-      {playerHands.map((hand, index) => {
-        let handResult = "";
-        let suggestedMove = "";
+          {/* Action Buttons at the Bottom */}
+          <div className="actionButtons">
+            {playerTurn && !gameOver && (
+              <>
+                {canSplit() && (
+                  <button
+                    className={`${styles.actionButton} ${styles.splitButton}`}
+                    onClick={splitHand}
+                  >
+                    Split
+                  </button>
+                )}
+                <button className={`${styles.actionButton} ${styles.hitButton}`} onClick={hit}>
+                  Hit
+                </button>
+                <button className={`${styles.actionButton} ${styles.standButton}`} onClick={stand}>
+                  Stand
+                </button>
 
-        if (gameOver) {
-          let playerScore = calculateHandValue(hand);
-          let dealerScore = calculateHandValue(dealerHand);
+                <button
+                  className={`${styles.actionButton} ${styles.doubleButton}`}
+                  onClick={doubleDown}
+                >
+                  Double
+                </button>
 
-          if (playerScore > 21) {
-            handResult = "Lose";
-          } else if (dealerScore > 21 || playerScore > dealerScore) {
-            handResult = "Win";
-          } else if (playerScore < dealerScore) {
-            handResult = "Lose";
-          } else {
-            handResult = "Push";
-          }
-        } else if (playerTurn && index === currentHandIndex) {
-          suggestedMove = getOptimalMove(hand, dealerHand[0]);
-        }
-
-        
-        return (
-          <div
-            key={index}
-            className={`${styles.hand} ${
-              index === currentHandIndex ? styles.activeHand : ""
-            }`}
-          >
-            
-            {/* Playing indicator */}
-            {index === currentHandIndex && playerTurn && (
-              <div className={styles.playingTag}>Playing</div>
+              </>
             )}
-            <h3>Hand {index + 1}</h3>
 
-
-            <div className={styles.cards}>
-              {hand.map((card, cardIdx) => (
-                <img
-                  key={cardIdx}
-                  ref={(el) => {
-                    if (!playerCardRefs.current[index]) {
-                      playerCardRefs.current[index] = [];
-                    }
-                    playerCardRefs.current[index][cardIdx] = el;
-                  }}
-                  src={`/cards/${card.value}${getSuitLetter(card.suit)}.png`}
-                  alt={`${card.value} of ${card.suit}`}
-                  className={styles.cardImage}
-                />
-              ))}
-            </div>
-
-            {gameOver && <p className={styles.handResult}>{handResult}</p>}
-
-            {playerTurn && index === currentHandIndex && showOptimalMove && (
-              <p className={styles.suggestion}>Optimal Move: {suggestedMove}</p>
+            {/* Play button */}
+            {!playerTurn && (
+              <button
+                className={`${styles.actionButton} ${styles.startButton}`}
+                onClick={startGame}
+              >
+                {gameOver ? "Play Again" : "Start Game"}
+              </button>
             )}
+
           </div>
-        );
-      })}
-
-</div>
-</div>
-
-{/* Action Buttons at the Bottom */}
-<div className="actionButtons">
-  {playerTurn && !gameOver && (
-    <>
-      {canSplit() && (
-        <button
-          className={`${styles.actionButton} ${styles.splitButton}`}
-          onClick={splitHand}
-        >
-          Split
-        </button>
-      )}
-      <button className={`${styles.actionButton} ${styles.hitButton}`} onClick={hit}>
-        Hit
-      </button>
-      <button className={`${styles.actionButton} ${styles.standButton}`} onClick={stand}>
-        Stand
-      </button>
-
-        <button
-          className={`${styles.actionButton} ${styles.doubleButton}`}
-          onClick={doubleDown}
-        >
-          Double
-        </button>
-
-    </>
-  )}
-  
-        {/* Play button */}
-        {!playerTurn && (
-            <button
-              className={`${styles.actionButton} ${styles.startButton}`}
-              onClick={startGame}
-            >
-              {gameOver ? "Play Again" : "Start Game"}
-            </button>
-          )}
-
         </div>
       </div>
-</div>
 
 
-        
+
 
       {/* Right Side Tabs */}
       <div className="sideTabs">

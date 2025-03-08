@@ -35,11 +35,7 @@
   align-items: center;
 }
 
-.cards {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-}
+
 
 .cards span {
   font-size: 1.8rem;
@@ -269,12 +265,6 @@
 
 .hidden {
   visibility: hidden;
-}
-
-.dealerScore {
-  min-height: 24px;
-  font-size: 18px;
-  font-weight: bold;
 }
 
 .controlsContainer {

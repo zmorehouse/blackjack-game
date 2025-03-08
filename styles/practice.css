@@ -58,15 +58,49 @@
   .dealerTotal {
     margin-top: 10px;
   }
-  
+
+
+.dealerScore {
+  min-height: 24px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
   .dealerCards {
     display: flex;
     margin-top: 10px;
   }
   
-  .card {
-    margin-right: 10px;
+  .cards {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
   }
+  
+  .cardContainer {
+    position: relative;
+  }
+  
+  .cardImage {
+    width: 80px !important;
+    height: auto;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    
+    margin-left: -30px;
+  }
+  
+  .cardContainer:first-child .cardImage {
+    margin-left: 0;
+  }
+  
+
+.cardContainer {
+  display: inline-block;
+  perspective: 1000px;
+}
+
   
   .statsContainer {
     display: flex;
@@ -189,21 +223,20 @@
   .sideWindowPane {
     position: fixed;
     top: 0;
-    right: -300px; /* Initially off-screen */
+    right: -300px; 
     width: 300px;
-    height: 100vh; /* Full height */
+    height: 100vh;
     background-color: #fff;
     color: #333;
     padding: 20px;
-    border-radius: 10px 0 0 10px; /* Rounded left side */
+    border-radius: 10px 0 0 10px; 
     box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
-    transition: right 0.3s ease-in-out; /* Smooth transition for sliding in/out */
+    transition: right 0.3s ease-in-out; 
   }
   
-  /* Make the pane slide in when active */
   .sideWindowPane.active {
-    right: 0; /* Pane is fully visible */
+    right: 0;
   }
   
   .sideWindowPane h2 {
