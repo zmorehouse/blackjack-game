@@ -1,0 +1,446 @@
+import { useState } from "react";
+import styles from "@/styles/Home.module.css";
+
+export default function CheatSheetTables() {
+  const [section, setSection] = useState("hard");
+
+  return (
+    <>
+      <div className={styles.cheatTabs} role="tablist" aria-label="Cheatsheet sections">
+        {[
+          { id: "hard", label: "Hard" },
+          { id: "soft", label: "Soft" },
+          { id: "pairs", label: "Pairs" },
+        ].map(({ id, label }) => (
+          <button
+            key={id}
+            type="button"
+            role="tab"
+            aria-selected={section === id}
+            className={`${styles.cheatTab} ${section === id ? styles.cheatTabActive : ""}`}
+            onClick={() => setSection(id)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      <div className={styles.cheatTablePanel}>
+        {section === "hard" && (
+          <div className={styles.cheatTableScroll}>
+            <table className={styles.cheatTable}>
+              <tbody>
+                <tr>
+                  <th>Hand</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                  <th>A</th>
+                </tr>
+                <tr>
+                  <td>5–8</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>11</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                </tr>
+                <tr>
+                  <td>12</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>13–16</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>17–21</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {section === "soft" && (
+          <div className={styles.cheatTableScroll}>
+            <table className={styles.cheatTable}>
+              <tbody>
+                <tr>
+                  <th>Hand</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                  <th>A</th>
+                </tr>
+                <tr>
+                  <td>A+2</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+3</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+4</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+5</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+6</td>
+                  <td>H</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+7</td>
+                  <td>DS</td>
+                  <td>DS</td>
+                  <td>DS</td>
+                  <td>DS</td>
+                  <td>DS</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>A+8</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>DS</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                </tr>
+                <tr>
+                  <td>A+9</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {section === "pairs" && (
+          <div className={styles.cheatTableScroll}>
+            <table className={styles.cheatTable}>
+              <tbody>
+                <tr>
+                  <th>Pair</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                  <th>9</th>
+                  <th>10</th>
+                  <th>A</th>
+                </tr>
+                <tr>
+                  <td>2,2</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>3,3</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>4,4</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>5,5</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>D</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>6,6</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>7,7</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                  <td>H</td>
+                </tr>
+                <tr>
+                  <td>8,8</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                </tr>
+                <tr>
+                  <td>9,9</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>S</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>S</td>
+                  <td>S</td>
+                </tr>
+                <tr>
+                  <td>T,T</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                  <td>S</td>
+                </tr>
+                <tr>
+                  <td>A,A</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                  <td>P</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.cheatBelowCharts}>
+        <p className={styles.finalline}>
+          H = Hit, D = Double, DS = Double or Stand, P = Split, S = Stand
+        </p>
+
+        <div className={styles.divider} aria-hidden="true" />
+
+        <div className={styles.cheatExplain}>
+        <p>
+          <strong>Hard hands</strong> — A hard hand is one where every ace counts as 1, or where
+          counting an ace as 11 would bust you. Example: 10 + 6 is hard 16; Ace + 6 + 10 is hard 17
+          (the ace must be 1).
+        </p>
+        <p>
+          <strong>Soft hands</strong> — A soft hand has an ace that can still count as 11 without
+          busting. Example: Ace + 6 is soft 17 — you could hit and the ace drops to 1 if needed.
+        </p>
+        <p>
+          <strong>Tens</strong> — King, Queen, Jack, and 10 all count as 10. Charts label them as
+          &quot;10&quot; or &quot;T&quot;.
+        </p>
+        </div>
+      </div>
+    </>
+  );
+}

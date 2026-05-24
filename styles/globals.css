@@ -14,15 +14,62 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
 
+#__next {
+  min-height: 100vh;
+  background-color: #0a4d2e;
+  position: relative;
+  isolation: isolate;
+}
+
+#__next::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("/images/halftone.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #fff;
+  background: transparent;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Pixel-art custom cursor (trainer site) */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html {
+    cursor: url("/cursor.png") 6 6, auto;
+  }
+
+  a,
+  button,
+  [role="tab"],
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: url("/cursor.png") 6 6, pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  a,
+  button,
+  [role="tab"],
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: auto;
+  }
 }
 
 h1, h2{
@@ -69,13 +116,7 @@ a {
 }
 
 
-* {
-  cursor: url("/cursor.png"), auto;
-}
-
-a, button, .customPointer, .actionButton, .navButton, .toggleInput, .startButton{
-  cursor: url("/pointer.png"), pointer;
-}
+/* Keep default cursors for usability */
 
 
 @font-face {
